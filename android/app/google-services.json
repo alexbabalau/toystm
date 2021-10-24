@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "728760360193",
+    "project_id": "toys-tm",
+    "storage_bucket": "toys-tm.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:728760360193:android:5b5f2a47d572a4d17b8f00",
+        "android_client_info": {
+          "package_name": "com.msa.toystm"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "728760360193-ikb8cqkst3egphjrbg31f615jeuajhec.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD07lngMZ1inbshRBShgeKQGsmURCJHYT4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "728760360193-ikb8cqkst3egphjrbg31f615jeuajhec.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
