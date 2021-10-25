@@ -27,6 +27,7 @@ class _FetchTestState extends State<FetchTest> {
                 return Center(child: Text('Data is null'));
               else {
                 List<dynamic> data = snapshot.data ?? [];
+                print(data);
                 return Scaffold(
                     body: Container(
                   height: 600,

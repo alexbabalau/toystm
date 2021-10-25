@@ -1,8 +1,8 @@
 class TransactionFirestoreModel{
-  String senderUserId;
-  String receiverUserId;
-  String status; // can be PENDING or ACCEPTED
-  DateTime date;
+  final String senderUserId;
+  final String receiverUserId;
+  final String status; // can be PENDING or ACCEPTED
+  final DateTime date;
 
   TransactionFirestoreModel({required this.receiverUserId, required this.senderUserId, required this.date, this.status = 'PENDING'});
   
