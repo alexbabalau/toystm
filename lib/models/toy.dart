@@ -1,10 +1,10 @@
 class ToyFirestoreModel{
-  String image;
-  String name;
-  String description;
-  int minAge;
-  int maxAge;
-  DateTime dateAdded;
+  final String image;
+  final String name;
+  final String description;
+  final int minAge;
+  final int maxAge;
+  final DateTime dateAdded;
 
   ToyFirestoreModel({this.image = '', this.name = '', this.description = '', this.minAge = 0, this.maxAge = 99, required this.dateAdded});
 

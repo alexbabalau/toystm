@@ -1,12 +1,12 @@
 import 'package:toystm/models/transaction.dart';
 
 class UserFirestoreModel {
-  String userId;
-  String username;
-  String email;
-  String phone;
-  String firstName;
-  String lastName;
+  final String userId;
+  final String username;
+  final String email;
+  final String phone;
+  final String firstName;
+  final String lastName;
   List<TransactionFirestoreModel>? sentTransactions;
   List<TransactionFirestoreModel>? receivedTransactions;
   List<TransactionFirestoreModel>? acceptedTransactions;
