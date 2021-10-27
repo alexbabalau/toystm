@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:toystm/shared/ui_elements.dart';
+import 'package:toystm/screens/home.dart';
+import 'package:toystm/shared/background_image.dart';
+import 'package:toystm/shared/custom_app_bar.dart';
 import 'package:toystm/shared/ui_specs.dart';
+import 'package:toystm/widgets/toys_grid_view.dart';
 
 void main() {
   runApp(ToysTMApp());
@@ -15,27 +18,13 @@ class ToysTMApp extends StatefulWidget {
 }
 
 class _ToysTMAppState extends State<ToysTMApp> {
+  List<Map> myProducts =
+      List.generate(15, (index) => {'id': index, 'name': 'Product $index'})
+          .toList();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: CustomAppBar(),
-        body: Stack(
-          children: <Widget>[
-            new Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                    image: AssetImage("assets/images/home-screen.png"),
-                    fit: BoxFit.cover),
-              ),
-            ),
-            Center(
-              child: Text('Hello Daria!'),
-            ),
-          ],
-        ),
-      ),
-    );
+        debugShowCheckedModeBanner: false, home: Home(myProducts));
   }
 }

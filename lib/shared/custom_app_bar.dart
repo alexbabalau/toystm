@@ -11,7 +11,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       foregroundColor: AppColors.DARK,
       leading: IconButton(
         iconSize: 26,
-        icon: const Icon(Icons.arrow_back_ios),
+        icon:
+            const Icon(true ? Icons.notifications_none : Icons.arrow_back_ios),
         tooltip: 'Show Snackbar',
         onPressed: () {
           ScaffoldMessenger.of(context).showSnackBar(
