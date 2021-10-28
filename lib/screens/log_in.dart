@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:toystm/services/authentication.dart';
 import 'package:toystm/shared/background_image.dart';
 import 'package:toystm/shared/custom_text_field.dart';
 import 'package:toystm/shared/ui_specs.dart';
@@ -12,7 +13,9 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
-  final usernameController = TextEditingController();
+  AuthenticationService authenticationService = AuthenticationService();
+
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
 
   @override
@@ -36,15 +39,19 @@ class _LogInState extends State<LogIn> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  CustomTextField('username', usernameController, false),
-                  CustomTextField('passwod', passwordController, true),
+                  CustomTextField('email', emailController, false),
+                  CustomTextField('password', passwordController, true),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Row(
                       children: [
                         Expanded(
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              authenticationService.signInWithEmailAndPassword(
+                                  emailController.text,
+                                  passwordController.text);
+                            },
                             child: Align(
                               alignment: Alignment.centerLeft,
                               child: Text(
@@ -61,7 +68,7 @@ class _LogInState extends State<LogIn> {
                             child: Align(
                               alignment: Alignment.centerRight,
                               child: Text(
-                                'Sign in',
+                                'Register',
                                 style: TextStyle(
                                     color: AppColors.DARK, fontSize: 16),
                               ),
