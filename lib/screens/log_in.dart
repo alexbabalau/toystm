@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:toystm/shared/background_image.dart';
+import 'package:toystm/shared/custom_text_field.dart';
 import 'package:toystm/shared/ui_specs.dart';
 
 class LogIn extends StatefulWidget {
@@ -11,6 +12,9 @@ class LogIn extends StatefulWidget {
 }
 
 class _LogInState extends State<LogIn> {
+  final usernameController = TextEditingController();
+  final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,32 +36,8 @@ class _LogInState extends State<LogIn> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 5),
-                    decoration: BoxDecoration(
-                        color: AppColors.CREAM,
-                        borderRadius: BorderRadius.circular(50)),
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
-                    child: TextField(
-                      decoration: InputDecoration(
-                          hintText: 'username',
-                          border: InputBorder.none,
-                          hintStyle: TextStyle(fontSize: 17)),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.symmetric(vertical: 5),
-                    decoration: BoxDecoration(
-                        color: AppColors.CREAM,
-                        borderRadius: BorderRadius.circular(50)),
-                    padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
-                    child: TextField(
-                      decoration: InputDecoration(
-                          hintText: 'password',
-                          border: InputBorder.none,
-                          hintStyle: TextStyle(fontSize: 17)),
-                    ),
-                  ),
+                  CustomTextField('username', usernameController, false),
+                  CustomTextField('passwod', passwordController, true),
                   Container(
                     padding: EdgeInsets.symmetric(horizontal: 15),
                     child: Row(
