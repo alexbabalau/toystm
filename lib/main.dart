@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toystm/screens/home.dart';
+import 'package:toystm/screens/log_in.dart';
 import 'package:toystm/shared/background_image.dart';
 import 'package:toystm/shared/custom_app_bar.dart';
 import 'package:toystm/shared/ui_specs.dart';
@@ -25,6 +26,9 @@ class _ToysTMAppState extends State<ToysTMApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false, home: Home(myProducts));
+      debugShowCheckedModeBanner: false,
+      home: LogIn(),
+      //Home(myProducts),
+    );
   }
 }
