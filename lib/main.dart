@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:toystm/screens/home.dart';
 import 'package:toystm/screens/log_in.dart';
+import 'package:toystm/screens/register.dart';
 import 'package:toystm/shared/elements/background_image.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
 import 'package:toystm/shared/ui_specs.dart';
@@ -31,7 +32,8 @@ class _ToysTMAppState extends State<ToysTMApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LogIn(),
+      home: Register(),
+      //LogIn(),
       //Home(myProducts),
     );
   }

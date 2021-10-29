@@ -5,13 +5,14 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final TextEditingController fieldController;
   final bool isPassword;
+  //Function? validation;
 
   CustomTextField(this.label, this.fieldController, this.isPassword);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 5),
+      margin: EdgeInsets.symmetric(vertical: 3.5),
       decoration: BoxDecoration(
           color: AppColors.CREAM, borderRadius: BorderRadius.circular(50)),
       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
