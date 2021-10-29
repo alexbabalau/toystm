@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:toystm/shared/background_image.dart';
-import 'package:toystm/shared/custom_app_bar.dart';
+import 'package:toystm/shared/elements/background_image.dart';
+import 'package:toystm/shared/elements/custom_app_bar.dart';
 import 'package:toystm/shared/ui_specs.dart';
 import 'package:toystm/widgets/toys_grid_view.dart';
 

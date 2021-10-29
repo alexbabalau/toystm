@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:toystm/shared/custom_app_bar.dart';
+import 'package:toystm/shared/elements/custom_app_bar.dart';
 
 class BackgroundImage extends StatelessWidget {
   String imagePath;
@@ -9,8 +9,7 @@ class BackgroundImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height -
-          CustomAppBar().preferredSize.height,
+      height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
         image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover),
       ),
