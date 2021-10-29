@@ -21,10 +21,12 @@ class CustomTextField extends StatelessWidget {
         autocorrect: !isPassword,
         enableSuggestions: !isPassword,
         decoration: InputDecoration(
-            //suffixIcon: Icon(Icons.visibility),
-            hintText: label,
-            border: InputBorder.none,
-            hintStyle: TextStyle(fontSize: 17)),
+          //suffixIcon: Icon(Icons.visibility),
+          hintText: label,
+          border: InputBorder.none,
+          hintStyle: TextStyle(fontSize: 17),
+        ),
+        //onSubmitted: () {},
       ),
     );
   }

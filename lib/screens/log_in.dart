@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:toystm/services/authentication.dart';
-import 'package:toystm/shared/background_image.dart';
-import 'package:toystm/shared/custom_text_field.dart';
+import 'package:toystm/shared/elements/background_image.dart';
+import 'package:toystm/shared/elements/custom_text_field.dart';
 import 'package:toystm/shared/ui_specs.dart';
 
 class LogIn extends StatefulWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:toystm/shared/custom_app_bar.dart';
+import 'package:toystm/shared/elements/custom_app_bar.dart';
 
 class BackgroundImage extends StatelessWidget {
   String imagePath;

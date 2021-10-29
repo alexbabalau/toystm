@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:toystm/shared/custom_app_bar.dart';
-import 'package:toystm/shared/list_item.dart';
+import 'package:toystm/shared/elements/custom_app_bar.dart';
+import 'package:toystm/shared/elements/list_item.dart';
 
 class ToysGridView extends StatelessWidget {
   final List<Map> items;
