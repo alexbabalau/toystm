@@ -77,6 +77,7 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
                 shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(18.0),
+                    //side: BorderSide(color: AppColors.WINE_RED),
                   ),
                 ),
               ),
