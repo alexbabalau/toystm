@@ -13,13 +13,13 @@ class Register extends StatelessWidget {
           height: MediaQuery.of(context).size.height,
           child: Stack(
             children: [
-              BackgroundImage('assets/images/log_in.png'),
+              BackgroundImage('assets/images/register.png'),
               Container(
                   alignment: Alignment.topCenter,
                   padding: EdgeInsets.only(top: 80),
                   child: Text(
                     'ToysTM LOGO',
-                    style: TextStyle(fontSize: 30, color: AppColors.DARK),
+                    style: TextStyle(fontSize: 30, color: AppColors.CREAM),
                   )),
               UserRegisterForm(),
             ],
