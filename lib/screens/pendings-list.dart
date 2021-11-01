@@ -14,6 +14,12 @@ class PendingsList extends StatelessWidget {
     {'username': 'dariam', 'date': 'xx/xx/20xx'},
     {'username': 'dariam', 'date': 'xx/xx/20xx'},
     {'username': 'dariam', 'date': 'xx/xx/20xx'},
+    {'username': 'dariam', 'date': 'xx/xx/20xx'},
+    {'username': 'dariam', 'date': 'xx/xx/20xx'},
+    {'username': 'dariam', 'date': 'xx/xx/20xx'},
+    {'username': 'dariam', 'date': 'xx/xx/20xx'},
+    {'username': 'dariam', 'date': 'xx/xx/20xx'},
+    {'username': 'dariam', 'date': 'xx/xx/20xx'},
   ];
 
   @override
