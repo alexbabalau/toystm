@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:toystm/models/notification.dart';
 import 'package:toystm/shared/ui_specs.dart';
 
 class NotificationsList extends StatelessWidget {
-  final List<Map> notifications;
+  final List<TransactionNotification> notifications;
 
   NotificationsList(this.notifications);
 
@@ -25,7 +27,7 @@ class NotificationsList extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        notifications[index]['title'],
+                        notifications[index].title,
                         style: TextStyle(
                           color: AppColors.CREAM,
                           fontSize: 20,
@@ -39,7 +41,7 @@ class NotificationsList extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          notifications[index]['username'],
+                          notifications[index].username,
                           style: TextStyle(
                             color: AppColors.CREAM,
                             fontSize: 16,
@@ -49,7 +51,7 @@ class NotificationsList extends StatelessWidget {
                           width: 15,
                         ),
                         Text(
-                          notifications[index]['date'],
+                          DateFormat.yMd().format(notifications[index].date),
                           style:
                               TextStyle(color: AppColors.CREAM, fontSize: 16),
                         )

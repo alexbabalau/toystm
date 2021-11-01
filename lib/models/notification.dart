@@ -1,8 +1,8 @@
-class Notification {
+class TransactionNotification {
   final String title;
   final String username;
   final DateTime date;
 
-  Notification(
+  TransactionNotification(
       {required this.title, required this.username, required this.date});
 }

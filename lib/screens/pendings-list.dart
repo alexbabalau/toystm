@@ -1,26 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:toystm/models/pending_transaction.dart';
 import 'package:toystm/shared/elements/background_image.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
 import 'package:toystm/shared/ui_specs.dart';
 
 class PendingsList extends StatelessWidget {
-  List<Map> pendings = [
-    {'username': 'dariam', 'date': 'xx/xx/20xx'},
-    {'username': 'dariam', 'date': 'xx/xx/20xx'},
-    {'username': 'dariam', 'date': 'xx/xx/20xx'},
-    {'username': 'dariam', 'date': 'xx/xx/20xx'},
-    {'username': 'dariam', 'date': 'xx/xx/20xx'},
-    {'username': 'dariam', 'date': 'xx/xx/20xx'},
-    {'username': 'dariam', 'date': 'xx/xx/20xx'},
-    {'username': 'dariam', 'date': 'xx/xx/20xx'},
-    {'username': 'dariam', 'date': 'xx/xx/20xx'},
-    {'username': 'dariam', 'date': 'xx/xx/20xx'},
-    {'username': 'dariam', 'date': 'xx/xx/20xx'},
-    {'username': 'dariam', 'date': 'xx/xx/20xx'},
-    {'username': 'dariam', 'date': 'xx/xx/20xx'},
-    {'username': 'dariam', 'date': 'xx/xx/20xx'},
-    {'username': 'dariam', 'date': 'xx/xx/20xx'},
-  ];
+  List<PendingTransaction> pendings = List.generate(
+          15,
+          (index) =>
+              PendingTransaction(username: 'dariam', date: DateTime.now()))
+      .toList();
 
   @override
   Widget build(BuildContext context) {
@@ -50,7 +40,7 @@ class PendingsList extends StatelessWidget {
                               child: Align(
                                 alignment: Alignment.centerLeft,
                                 child: Text(
-                                  pendings[index]['username'],
+                                  pendings[index].username,
                                   style: TextStyle(
                                     color: AppColors.WINE_RED,
                                     fontSize: 16,
@@ -61,7 +51,7 @@ class PendingsList extends StatelessWidget {
                             Align(
                               alignment: Alignment.centerRight,
                               child: Text(
-                                pendings[index]['date'],
+                                DateFormat.yMd().format(pendings[index].date),
                                 style: TextStyle(
                                     color: AppColors.WINE_RED, fontSize: 16),
                               ),

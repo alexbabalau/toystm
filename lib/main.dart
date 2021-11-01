@@ -34,8 +34,8 @@ class _ToysTMAppState extends State<ToysTMApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PendingsList(),
-      //NotificationsCenter(),
+      home: //PendingsList(),
+          NotificationsCenter(),
       //Register(),
       //LogIn(),
       //Home(myProducts),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toystm/models/notification.dart';
 import 'package:toystm/shared/elements/background_image.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
 import 'package:toystm/shared/ui_specs.dart';
@@ -12,20 +13,12 @@ class NotificationsCenter extends StatefulWidget {
 }
 
 class _NotificationsCenterState extends State<NotificationsCenter> {
-  List<Map> notifications = [
-    {'title': 'Trade request', 'username': 'dariam', 'date': 'xx/xx/20xx'},
-    {'title': 'Trade response', 'username': 'alexb', 'date': 'xx/xx/20xx'},
-    {'title': 'Trade response', 'username': 'alexb', 'date': 'xx/xx/20xx'},
-    {'title': 'Trade response', 'username': 'alexb', 'date': 'xx/xx/20xx'},
-    {'title': 'Trade response', 'username': 'alexb', 'date': 'xx/xx/20xx'},
-    {'title': 'Trade response', 'username': 'alexb', 'date': 'xx/xx/20xx'},
-    {'title': 'Trade response', 'username': 'alexb', 'date': 'xx/xx/20xx'},
-    {'title': 'Trade response', 'username': 'alexb', 'date': 'xx/xx/20xx'},
-    {'title': 'Trade response', 'username': 'alexb', 'date': 'xx/xx/20xx'},
-    {'title': 'Trade response', 'username': 'alexb', 'date': 'xx/xx/20xx'},
-    {'title': 'Trade response', 'username': 'alexb', 'date': 'xx/xx/20xx'},
-    {'title': 'Trade response', 'username': 'alexb', 'date': 'xx/xx/20xx'},
-  ];
+  List<TransactionNotification> notifications = List.generate(
+      15,
+      (index) => TransactionNotification(
+          title: 'Trade Request',
+          username: 'dariam',
+          date: DateTime.now())).toList();
 
   @override
   Widget build(BuildContext context) {
