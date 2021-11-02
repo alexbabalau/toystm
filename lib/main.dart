@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:toystm/screens/home.dart';
 import 'package:toystm/screens/log_in.dart';
 import 'package:toystm/screens/notifications-center.dart';
+import 'package:toystm/screens/pendings-list.dart';
 import 'package:toystm/screens/register.dart';
 import 'package:toystm/screens/search.dart';
 import 'package:toystm/shared/elements/background_image.dart';

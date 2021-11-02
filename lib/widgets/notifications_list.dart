@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:toystm/models/notification.dart';
 import 'package:toystm/shared/ui_specs.dart';
 
 class NotificationsList extends StatelessWidget {
-  final List<Map> notifications;
+  final List<TransactionNotification> notifications;
 
   NotificationsList(this.notifications);
 
@@ -19,16 +21,16 @@ class NotificationsList extends StatelessWidget {
                   borderRadius: BorderRadius.circular(40)),
               color: AppColors.BRONZE_ORANGE,
               child: Container(
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+                padding: EdgeInsets.symmetric(vertical: 13, horizontal: 25),
                 child: Column(
                   children: [
                     Align(
                       alignment: Alignment.centerLeft,
                       child: Text(
-                        notifications[index]['title'],
+                        notifications[index].title,
                         style: TextStyle(
                           color: AppColors.CREAM,
-                          fontSize: 20,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -38,20 +40,25 @@ class NotificationsList extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text(
-                          notifications[index]['username'],
-                          style: TextStyle(
-                            color: AppColors.CREAM,
-                            fontSize: 16,
+                        Expanded(
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              notifications[index].username,
+                              style: TextStyle(
+                                color: AppColors.CREAM,
+                                fontSize: 16,
+                              ),
+                            ),
                           ),
                         ),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        Text(
-                          notifications[index]['date'],
-                          style:
-                              TextStyle(color: AppColors.CREAM, fontSize: 16),
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: Text(
+                            DateFormat.yMd().format(notifications[index].date),
+                            style:
+                                TextStyle(color: AppColors.CREAM, fontSize: 16),
+                          ),
                         )
                       ],
                     )
