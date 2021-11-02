@@ -33,10 +33,11 @@ class _ToysTMAppState extends State<ToysTMApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: NotificationsCenter(),
-      //Register(),
-      //LogIn(),
-      //Home(myProducts),
+      home:
+          //NotificationsCenter(),
+          //Register(),
+          //LogIn(),
+          Home(myProducts),
     );
   }
 }
