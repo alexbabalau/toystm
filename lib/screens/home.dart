@@ -20,15 +20,7 @@ class Home extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Stack(children: [
-                BackgroundImage("assets/images/home-screen.png"),
-                /*Center(
-                  child: IconButton(
-                    onPressed: () => print('inca nimic'),
-                    icon: Icon(Icons.keyboard_arrow_down),
-                  ),
-                ),*/
-              ]),
+              BackgroundImage("assets/images/home-screen.png"),
               ToysGridView(myProducts),
             ],
           ),

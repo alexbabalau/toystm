@@ -10,7 +10,7 @@ class ToysGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 10),
+      margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       height: MediaQuery.of(context).size.height -
           CustomAppBar().preferredSize.height,
       child: GridView.builder(
