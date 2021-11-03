@@ -7,10 +7,11 @@ class CustomTextField extends StatelessWidget {
   final bool isPassword;
   Color? backgroundColor;
   Icon? fieldSuffixIcon;
+  FocusNode? focus;
   //Function? validation;
 
   CustomTextField(this.label, this.fieldController, this.isPassword,
-      {this.backgroundColor, this.fieldSuffixIcon}) {
+      {this.backgroundColor, this.fieldSuffixIcon, this.focus}) {
     if (this.backgroundColor == null) this.backgroundColor = AppColors.CREAM;
   }
 
@@ -34,6 +35,7 @@ class CustomTextField extends StatelessWidget {
           border: InputBorder.none,
           hintStyle: TextStyle(fontSize: 17),
         ),
+        focusNode: focus,
         //onSubmitted: () {},
       ),
     );

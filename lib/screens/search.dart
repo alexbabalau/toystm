@@ -12,11 +12,29 @@ class Search extends StatefulWidget {
 }
 
 class _SearchState extends State<Search> {
-  var searchController = TextEditingController();
+  var _searchController = TextEditingController();
+  FocusNode _focus = new FocusNode();
+  double gridHeight = 90;
 
   List<Map> items =
       List.generate(15, (index) => {'id': index, 'name': 'Product $index'})
           .toList();
+  @override
+  void initState() {
+    super.initState();
+    _focus.addListener(_onFocusChange);
+  }
+
+  void dispose() {
+    _focus.removeListener(_onFocusChange);
+    _focus.dispose();
+  }
+
+  void _onFocusChange() {
+    if (this.gridHeight == 90)
+      this.gridHeight = 383;
+    else if (this.gridHeight == 383) this.gridHeight = 90;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,15 +50,16 @@ class _SearchState extends State<Search> {
               margin: EdgeInsets.only(top: 10, left: 10, right: 10),
               child: CustomTextField(
                 'search',
-                searchController,
+                _searchController,
                 false,
                 backgroundColor: AppColors.WHITE,
                 fieldSuffixIcon: Icon(Icons.search),
+                focus: _focus,
               ),
             ),
             ToysGridView(
               items,
-              height: 90,
+              substractedHeight: this.gridHeight,
             ),
           ],
         ),

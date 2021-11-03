@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:toystm/models/pending_transaction.dart';
 import 'package:toystm/screens/home.dart';
 import 'package:toystm/screens/log_in.dart';
 import 'package:toystm/screens/notifications-center.dart';
@@ -37,6 +38,7 @@ class _ToysTMAppState extends State<ToysTMApp> {
       debugShowCheckedModeBanner: false,
       home: Search(),
       //NotificationsCenter(),
+      //PendingsList(),
       //Register(),
       //LogIn(),
       //Home(myProducts),

@@ -4,9 +4,9 @@ import 'package:toystm/shared/elements/list_item.dart';
 
 class ToysGridView extends StatelessWidget {
   final List<Map> items;
-  double height;
+  double substractedHeight;
 
-  ToysGridView(this.items, {this.height = 0.0});
+  ToysGridView(this.items, {this.substractedHeight = 0.0});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class ToysGridView extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       height: MediaQuery.of(context).size.height -
           CustomAppBar().preferredSize.height -
-          this.height,
+          this.substractedHeight,
       child: GridView.builder(
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200,
