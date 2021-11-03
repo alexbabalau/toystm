@@ -5,30 +5,37 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final TextEditingController fieldController;
   final bool isPassword;
+  Color? backgroundColor;
+  Icon? fieldSuffixIcon;
+  FocusNode? focus;
   //Function? validation;
 
-  CustomTextField(this.label, this.fieldController, this.isPassword);
+  CustomTextField(this.label, this.fieldController, this.isPassword,
+      {this.backgroundColor, this.fieldSuffixIcon, this.focus}) {
+    if (this.backgroundColor == null) this.backgroundColor = AppColors.CREAM;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 3.5),
       decoration: BoxDecoration(
-        color: AppColors.CREAM,
+        color: backgroundColor,
         borderRadius: BorderRadius.circular(50),
       ),
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 0),
+      padding: EdgeInsets.only(left: 30, right: 10),
       child: TextField(
         controller: fieldController,
         obscureText: isPassword,
         autocorrect: !isPassword,
         enableSuggestions: !isPassword,
         decoration: InputDecoration(
-          //suffixIcon: Icon(Icons.visibility),
+          suffixIcon: this.fieldSuffixIcon,
           hintText: label,
           border: InputBorder.none,
           hintStyle: TextStyle(fontSize: 17),
         ),
+        focusNode: focus,
         //onSubmitted: () {},
       ),
     );
