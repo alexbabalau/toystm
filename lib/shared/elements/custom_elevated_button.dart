@@ -7,6 +7,7 @@ class CustomElevatedButton extends StatelessWidget {
   Color? backgroundColor;
   Color? textColor;
   Function? buttonAction;
+  Size? size;
   // double width;
   // double height;
 
@@ -16,8 +17,9 @@ class CustomElevatedButton extends StatelessWidget {
     this.backgroundColor,
     this.textColor,
     this.buttonAction,
-    // this.width = 100,
-    // this.height = 20,
+    this.size,
+    // this.width = 0,
+    // this.height = 0,
   }) {
     if (backgroundColor == null) this.backgroundColor = AppColors.BRONZE_ORANGE;
     if (textColor == null) this.textColor = AppColors.CREAM;
@@ -34,7 +36,10 @@ class CustomElevatedButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(18.0),
           ),
         ),
-        //fixedSize: MaterialStateProperty.all<Size>(Size(this.width, this.height)),
+        fixedSize: MaterialStateProperty.all<Size?>(this.size),
+        /*(width * height) != 0
+            ? MaterialStateProperty.all<Size>(Size(this.width, this.height))
+            : null*/
       ),
       child: Text(
         this.text,

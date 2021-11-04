@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toystm/models/user.dart';
+import 'package:toystm/shared/elements/bottom_button.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
 import 'package:toystm/shared/elements/custom_elevated_button.dart';
 import 'package:toystm/shared/ui_specs.dart';
@@ -142,16 +143,9 @@ class UserProfile extends StatelessWidget {
               ],
             ),
             Expanded(
-              child: Container(
-                padding: EdgeInsets.only(bottom: 25),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    CustomElevatedButton(
-                      text: 'log out',
-                    ),
-                  ],
-                ),
+              child: BottomButton(
+                text: 'log out',
+                backgroundColor: AppColors.WINE_RED,
               ),
             ),
           ],
