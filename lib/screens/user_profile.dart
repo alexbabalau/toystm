@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:toystm/models/user.dart';
 import 'package:toystm/shared/elements/bottom_button.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
-import 'package:toystm/shared/elements/custom_elevated_button.dart';
 import 'package:toystm/shared/ui_specs.dart';
 import 'package:toystm/widgets/user_info.dart';
+import 'package:toystm/widgets/user_menu.dart';
 
 class UserProfile extends StatelessWidget {
   UserFirestoreModel testUser = new UserFirestoreModel(
@@ -56,37 +56,7 @@ class UserProfile extends StatelessWidget {
               height: 1,
               color: AppColors.DARK,
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: CustomElevatedButton(
-                      text: 'favourites',
-                      backgroundColor: AppColors.BRONZE_ORANGE,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: CustomElevatedButton(
-                      text: 'my toys',
-                      backgroundColor: AppColors.LIGHT_ORANGE,
-                    ),
-                  ),
-                ),
-                Expanded(
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: CustomElevatedButton(
-                      text: 'pending trx',
-                      backgroundColor: AppColors.ORANGE,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            UserMenu(),
             Expanded(
               child: BottomButton(
                 text: 'log out',
