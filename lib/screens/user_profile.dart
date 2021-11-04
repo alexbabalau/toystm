@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toystm/models/user.dart';
 import 'package:toystm/shared/elements/bottom_button.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
+import 'package:toystm/shared/elements/horizontal_separation_line.dart';
 import 'package:toystm/shared/ui_specs.dart';
 import 'package:toystm/widgets/user_info.dart';
 import 'package:toystm/widgets/user_menu.dart';
@@ -50,12 +51,7 @@ class UserProfile extends StatelessWidget {
               height: 25,
             ),
             UserInfo(testUser: testUser),
-            Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
-              width: double.infinity,
-              height: 1,
-              color: AppColors.DARK,
-            ),
+            HorizontalSepaationBar(),
             UserMenu(),
             Expanded(
               child: BottomButton(
