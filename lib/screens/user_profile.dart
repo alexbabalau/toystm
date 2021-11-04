@@ -4,6 +4,7 @@ import 'package:toystm/shared/elements/bottom_button.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
 import 'package:toystm/shared/elements/custom_elevated_button.dart';
 import 'package:toystm/shared/ui_specs.dart';
+import 'package:toystm/widgets/user_info.dart';
 
 class UserProfile extends StatelessWidget {
   UserFirestoreModel testUser = new UserFirestoreModel(
@@ -48,63 +49,7 @@ class UserProfile extends StatelessWidget {
             SizedBox(
               height: 25,
             ),
-            Container(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          testUser.firstName,
-                          style: TextStyle(
-                            color: AppColors.DARK,
-                            fontSize: 18,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 2.5,
-                        ),
-                        Text(
-                          testUser.lastName,
-                          style: TextStyle(
-                            color: AppColors.DARK,
-                            fontSize: 18,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 2.5,
-                        ),
-                        Text(
-                          testUser.email,
-                          style: TextStyle(
-                            color: AppColors.DARK,
-                            fontSize: 18,
-                          ),
-                        ),
-                        SizedBox(
-                          height: 2.5,
-                        ),
-                        Text(
-                          testUser.phone,
-                          style: TextStyle(
-                            color: AppColors.DARK,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'edit',
-                      style: TextStyle(color: AppColors.WINE_RED),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            UserInfo(testUser: testUser),
             Container(
               margin: EdgeInsets.symmetric(vertical: 10),
               width: double.infinity,
