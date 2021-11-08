@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../ui_specs.dart';
 
-class HorizontalSepaationBar extends StatelessWidget {
+class HorizontalSeparationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
