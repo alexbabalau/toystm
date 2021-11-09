@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:toystm/models/toy.dart';
 
-class ListItem extends StatelessWidget {
-  Map item;
+class ListToyItem extends StatelessWidget {
+  ToyFirestoreModel toy;
 
-  ListItem(this.item);
+  ListToyItem(this.toy);
 
   @override
   Widget build(BuildContext context) {
@@ -14,19 +15,24 @@ class ListItem extends StatelessWidget {
           Container(
             width: 170,
             height: 170,
-            child: Image.asset(
+            child:
+                /*Image.asset(
               'assets/images/IMG_7805.jpg',
+              fit: BoxFit.cover,
+            ),*/
+                Image.network(
+              toy.image,
               fit: BoxFit.cover,
             ),
           ),
           Container(
             margin: EdgeInsets.only(top: 12),
             child: Text(
-              item["name"],
+              toy.name,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
             ),
           ),
-          Text('age min - age max'),
+          Text('${toy.minAge} - ${toy.maxAge}'),
         ],
       ),
     );

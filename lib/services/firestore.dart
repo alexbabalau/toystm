@@ -6,25 +6,31 @@ import 'package:toystm/shared/constants.dart';
 class FirestoreService{
 
   ToyFirestoreModel _fromDocumentSnapshotToToyFirestoreModel(DocumentSnapshot<Map<String, dynamic>> documentSnapshot){
+    
     if(!documentSnapshot.exists){
       throw "Firestore Toy not found";
     }
 
-    Map<String, dynamic> data = documentSnapshot.data()!;
-
-    return ToyFirestoreModel(
-      image: data['image'],
-      name: data['name'],
-      description: data['description'],
-      minAge: data['minAge'],
-      maxAge: data['maxAge'],
-      dateAdded: DateFormat("yyyy-MM-dd hh:mm:ss").parse(data['dateAdded'])
-    );
+    return ToyFirestoreModel.fromDocumentSnapshot(documentSnapshot);
   }
 
-  Future<List<ToyFirestoreModel>> getFirstPageOfToys() async {
-    QuerySnapshot<Map<String, dynamic>> queryDocumentSnapshot = await FirebaseFirestore.instance.collection('Toys').limit(Constants.NUMBER_OF_TOYS_PER_PAGE).get(); 
-    return queryDocumentSnapshot.docs.map(_fromDocumentSnapshotToToyFirestoreModel).toList();
+  Future<List<DocumentSnapshot<Map<String, dynamic>>>> getFirstPageOfToys() async {
+    QuerySnapshot<Map<String, dynamic>> queryDocumentSnapshot = await FirebaseFirestore.instance
+      .collection('Toys')
+      .orderBy('dateAdded')
+      .limit(Constants.NUMBER_OF_TOYS_PER_PAGE)
+      .get(); 
+    return queryDocumentSnapshot.docs.toList();
+  }
+
+  Future<List<DocumentSnapshot<Map<String, dynamic>>>> getNextPageOfToys(DocumentSnapshot lastDocumentSnapshot) async{
+    QuerySnapshot<Map<String, dynamic>> queryDocumentSnapshot = await FirebaseFirestore.instance
+      .collection('Toys')
+      .orderBy('dateAdded')
+      .startAfterDocument(lastDocumentSnapshot)
+      .limit(Constants.NUMBER_OF_TOYS_PER_PAGE)
+      .get(); 
+    return queryDocumentSnapshot.docs.toList();
   }
 
 }
