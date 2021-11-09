@@ -33,7 +33,7 @@ class _FetchTestState extends State<FetchTest> {
                   height: 600,
                   child: ListView(
                     children: [
-                      Text(data[0].toJson().toString())
+                      Text(ToyFirestoreModel.fromDocumentSnapshot(data[0]).toJson().toString())
                     ],
                   ),
                 ));

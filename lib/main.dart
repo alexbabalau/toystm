@@ -11,7 +11,7 @@ import 'package:toystm/screens/user_profile.dart';
 import 'package:toystm/shared/elements/background_image.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
 import 'package:toystm/shared/ui_specs.dart';
-import 'package:toystm/widgets/toys_grid_view.dart';
+import 'package:toystm/widgets/toys_grid/toys_grid_view.dart';
 import 'package:toystm/test_screens/fetch_test.dart';
 
 void main() async {
@@ -23,7 +23,6 @@ void main() async {
 class ToysTMApp extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    // TODO: implement createState
     return _ToysTMAppState();
   }
 }
@@ -37,13 +36,14 @@ class _ToysTMAppState extends State<ToysTMApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: UserProfile(),
+      home: //UserProfile(),
       //Search(),
       //NotificationsCenter(),
       //PendingsList(),
       //Register(),
       //LogIn(),
-      //Home(myProducts),
+      Home(),
+      //FetchTest()
     );
   }
 }
