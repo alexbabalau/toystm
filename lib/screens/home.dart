@@ -76,7 +76,7 @@ class _HomeState extends State<Home> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               BackgroundImage("assets/images/home-screen.png"),
-              ToysGridView(toys),
+              ToysGridView(this.toys),
             ],
           ),
         ),

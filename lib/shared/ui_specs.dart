@@ -21,3 +21,9 @@ class AppColors {
   static Color DARK = HexColor('#343434');
   static Color WHITE = HexColor('#FFFFFF');
 }
+
+class AppFontSizes{
+  static double S = 10.0;
+  static double M = 20.0;
+  static double L = 30.0;
+}
