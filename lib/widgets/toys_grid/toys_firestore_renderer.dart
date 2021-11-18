@@ -26,9 +26,9 @@ class _ToysFirestoreRendererState extends State<ToysFirestoreRenderer> {
     setState(() {
       this.toyDocuments = firstToyDocuments;
       this.toys = this
-        .toyDocuments
-        .map((document) => ToyFirestoreModel.fromDocumentSnapshot(document))
-        .toList();
+          .toyDocuments
+          .map((document) => ToyFirestoreModel.fromDocumentSnapshot(document))
+          .toList();
     });
     //print(this.toys);
   }
@@ -40,7 +40,7 @@ class _ToysFirestoreRendererState extends State<ToysFirestoreRenderer> {
     controller.addListener(this._scrollListener);
   }
 
-  void _scrollListener(){
+  void _scrollListener() async {
     print('Here');
     if (controller.offset >= controller.position.maxScrollExtent &&
         !controller.position.outOfRange) {

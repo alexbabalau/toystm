@@ -7,12 +7,8 @@ import 'package:toystm/screens/notifications-center.dart';
 import 'package:toystm/screens/pendings-list.dart';
 import 'package:toystm/screens/register.dart';
 import 'package:toystm/screens/search.dart';
+import 'package:toystm/screens/toy_details.dart';
 import 'package:toystm/screens/user_profile.dart';
-import 'package:toystm/shared/elements/background_image.dart';
-import 'package:toystm/shared/elements/custom_app_bar.dart';
-import 'package:toystm/shared/ui_specs.dart';
-import 'package:toystm/widgets/toys_grid/toys_grid_view.dart';
-import 'package:toystm/test_screens/fetch_test.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,13 +32,14 @@ class _ToysTMAppState extends State<ToysTMApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: //UserProfile(),
+      home: ToyDetails(),
+      //UserProfile(),
       //Search(),
       //NotificationsCenter(),
       //PendingsList(),
       //Register(),
       //LogIn(),
-      Home(),
+      //Home(),
       //FetchTest()
     );
   }
