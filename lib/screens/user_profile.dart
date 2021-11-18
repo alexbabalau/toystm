@@ -51,7 +51,7 @@ class UserProfile extends StatelessWidget {
               height: 25,
             ),
             UserInfo(testUser: testUser),
-            HorizontalSeparationBar(),
+            HorizontalSepaationBar(),
             UserMenu(),
             Expanded(
               child: BottomButton(

@@ -44,7 +44,7 @@ class _ToyDetailsState extends State<ToyDetails> {
                 this.toy.image,
               ),
             ),
-            HorizontalSeparationBar(),
+            HorizontalSepaationBar(),
             Container(
               width: double.infinity,
               padding: EdgeInsets.symmetric(horizontal: 20),

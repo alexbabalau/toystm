@@ -1,3 +1,3 @@
 class Constants{
-  static const int NUMBER_OF_TOYS_PER_PAGE = 6;
+  static const int NUMBER_OF_TOYS_PER_PAGE = 2;
 }

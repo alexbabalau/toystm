@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
 import 'package:toystm/shared/elements/custom_text_field.dart';
 import 'package:toystm/shared/ui_specs.dart';
-import 'package:toystm/widgets/toys_grid_view.dart';
+import 'package:toystm/widgets/toys_grid/toys_firestore_renderer.dart';
+import 'package:toystm/widgets/toys_grid/toys_grid_view.dart';
 
 class Search extends StatefulWidget {
   const Search({Key? key}) : super(key: key);
@@ -57,9 +58,8 @@ class _SearchState extends State<Search> {
                 focus: _focus,
               ),
             ),
-            ToysGridView(
-              items,
-              substractedHeight: this.gridHeight,
+            ToysFirestoreRenderer(
+              subtractedHeight: this.gridHeight,
             ),
           ],
         ),

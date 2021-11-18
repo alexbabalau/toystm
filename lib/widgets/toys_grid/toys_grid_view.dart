@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:toystm/models/toy.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
-import 'package:toystm/shared/elements/list_item.dart';
+import 'package:toystm/shared/elements/list_toy_item.dart';
 
 class ToysGridView extends StatelessWidget {
-  final List<Map> items;
+  final List<ToyFirestoreModel> toys;
   double substractedHeight;
 
-  ToysGridView(this.items, {this.substractedHeight = 0.0});
+  ToysGridView(this.toys, {this.substractedHeight = 0.0});
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +22,9 @@ class ToysGridView extends StatelessWidget {
               childAspectRatio: 3 / 4,
               crossAxisSpacing: 10,
               mainAxisSpacing: 0),
-          itemCount: items.length,
+          itemCount: toys.length,
           itemBuilder: (BuildContext ctx, index) {
-            return ListItem(items[index]);
+            return ListToyItem(toys[index]);
           }),
     );
   }
