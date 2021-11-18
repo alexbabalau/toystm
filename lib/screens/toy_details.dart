@@ -44,14 +44,6 @@ class _ToyDetailsState extends State<ToyDetails> {
                 this.toy.image,
               ),
             ),
-            //   child: ClipRRect(
-            //     clipper: SquareClipper(),
-            //     child: Image.asset(
-            //       this.toy.image,
-            //       //fit: BoxFit.cover,
-            //     ),
-            //   ),
-            // ),
             HorizontalSeparationBar(),
             Container(
               width: double.infinity,
@@ -115,13 +107,3 @@ class _ToyDetailsState extends State<ToyDetails> {
     );
   }
 }
-
-// class SquareClipper extends CustomClipper<RRect> {
-//   @override
-//   RRect getClip(Size size) {
-//     return RRect.fromLTRBR(0, 0, size.width, size.width, Radius.circular(10));
-//   }
-
-//   @override
-//   bool shouldReclip(covariant CustomClipper<RRect> oldClipper) => false;
-// }
