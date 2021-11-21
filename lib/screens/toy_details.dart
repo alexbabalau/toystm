@@ -86,11 +86,18 @@ class _ToyDetailsState extends State<ToyDetails> {
                   SizedBox(
                     height: 7,
                   ),
-                  Text(
-                    this.toy.description,
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: AppColors.DARK,
+                  Container(
+                    height: 129,
+                    child: ListView(
+                      children: [
+                        Text(
+                          this.toy.description,
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: AppColors.DARK,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
