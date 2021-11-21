@@ -12,7 +12,7 @@ class MyToyView extends StatelessWidget {
     minAge: 4,
     maxAge: 100,
     description:
-        'Barca de jucarie. Material : plastic. Culoarea barcii este alba. Minunata pebtru copii pasionati de barci. Pluteste foarte frumos in cada sau pe mare. Minunata pentru jucariile care vor sa vada apusul.',
+        'Barca de jucarie.\nMaterial : plastic. Culoarea barcii este alba.\nMinunata pebtru copii pasionati de barci. Pluteste foarte frumos in cada sau pe mare. Minunata pentru jucariile care vor sa vada apusul.',
     dateAdded: DateTime.now(),
   );
 
@@ -73,11 +73,18 @@ class MyToyView extends StatelessWidget {
                   SizedBox(
                     height: 7,
                   ),
-                  Text(
-                    this.toy.description,
-                    style: TextStyle(
-                      fontSize: 18,
-                      color: AppColors.DARK,
+                  Container(
+                    height: 129,
+                    child: ListView(
+                      children: [
+                        Text(
+                          this.toy.description,
+                          style: TextStyle(
+                            fontSize: 18,
+                            color: AppColors.DARK,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ],
