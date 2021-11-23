@@ -56,6 +56,7 @@ flutter:
   assets:
     - assets/images/home-screen.png
     - assets/images/IMG_7805.jpg
+    - assets/images/IMG_6240.jpg
     - assets/images/log_in.png
     - assets/images/register.png
     - assets/images/img1.png
