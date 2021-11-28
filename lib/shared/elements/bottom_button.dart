@@ -21,16 +21,48 @@ class BottomButton extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          CustomElevatedButton(
-            text: this.text,
-            textSize: 22,
-            size: Size(250, 40),
-            textColor: this.textColor,
-            backgroundColor: this.backgroundColor,
-            buttonAction: this.buttonAction,
+          Row(
+            children: [
+              SizedBox(
+                width: 20,
+              ),
+              Expanded(
+                child: CustomElevatedButton(
+                  text: this.text,
+                  textSize: 22,
+                  textColor: this.textColor,
+                  backgroundColor: this.backgroundColor,
+                  buttonAction: this.buttonAction,
+                ),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+            ],
           ),
         ],
       ),
     );
   }
 }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container(
+//       padding: EdgeInsets.only(bottom: 25),
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.end,
+//         children: [
+//           CustomElevatedButton(
+//             text: this.text,
+//             textSize: 22,
+//             size: Size(250, 40),
+//             textColor: this.textColor,
+//             backgroundColor: this.backgroundColor,
+//             buttonAction: this.buttonAction,
+//           ),
+//         ],
+//       ),
+//     );
+//   }
+// }
