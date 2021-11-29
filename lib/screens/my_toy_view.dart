@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:toystm/models/toy.dart';
 import 'package:toystm/shared/elements/bottom_button.dart';
@@ -7,23 +5,16 @@ import 'package:toystm/shared/elements/custom_app_bar.dart';
 import 'package:toystm/shared/elements/horizontal_separation_line.dart';
 import 'package:toystm/shared/ui_specs.dart';
 
-class ToyDetails extends StatefulWidget {
-  @override
-  State<ToyDetails> createState() => _ToyDetailsState();
-}
-
-class _ToyDetailsState extends State<ToyDetails> {
+class MyToyView extends StatelessWidget {
   ToyFirestoreModel toy = ToyFirestoreModel(
-    image: 'assets/images/IMG_7805.jpg',
-    name: 'Pestera',
+    image: 'assets/images/IMG_6240.jpg',
+    name: 'Barca',
     minAge: 4,
     maxAge: 100,
     description:
-        'Psetera jucarie. Replica Pestera Ungurul Mare, Suncuius, Jud. Bihor. Contine si mini lilieci de jucarie pe tavan.',
+        'Barca de jucarie.\nMaterial : plastic. Culoarea barcii este alba.\nMinunata pebtru copii pasionati de barci. Pluteste foarte frumos in cada sau pe mare. Minunata pentru jucariile care vor sa vada apusul.',
     dateAdded: DateTime.now(),
   );
-
-  bool _isAddedToFavourites = false;
 
   @override
   Widget build(BuildContext context) {
@@ -64,16 +55,12 @@ class _ToyDetailsState extends State<ToyDetails> {
                         ),
                       ),
                       IconButton(
-                          onPressed: () {
-                            setState(() =>
-                                _isAddedToFavourites = !_isAddedToFavourites);
-                          },
-                          icon: Icon(
-                            Icons.favorite,
-                            color: _isAddedToFavourites
-                                ? AppColors.WINE_RED
-                                : AppColors.DARK,
-                          )),
+                        onPressed: () {},
+                        icon: Icon(
+                          Icons.edit,
+                          color: AppColors.DARK,
+                        ),
+                      ),
                     ],
                   ),
                   Text(
@@ -104,13 +91,15 @@ class _ToyDetailsState extends State<ToyDetails> {
               ),
             ),
             Expanded(
-                child: BottomButton(
-              text: 'want to trade',
-              backgroundColor: AppColors.WINE_RED,
-            )),
+              child: BottomButton(
+                text: 'delete',
+                backgroundColor: AppColors.LIGHT_ORANGE,
+              ),
+            ),
           ],
         ),
       ),
     );
+    ;
   }
 }
