@@ -17,6 +17,7 @@ class ToysGridView extends StatelessWidget {
           CustomAppBar().preferredSize.height -
           this.substractedHeight,
       child: GridView.builder(
+          physics: NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
               maxCrossAxisExtent: 200,
               childAspectRatio: 3 / 4,
