@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toystm/models/toy.dart';
 import 'package:toystm/shared/elements/background_image.dart';
 import 'package:toystm/shared/elements/bottom_button.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
@@ -7,6 +8,16 @@ import 'package:toystm/shared/elements/toy_short_view.dart';
 import 'package:toystm/shared/ui_specs.dart';
 
 class TradeStep2 extends StatelessWidget {
+  ToyFirestoreModel toy = ToyFirestoreModel(
+    image: 'assets/images/IMG_7805.jpg',
+    name: 'Pestera',
+    minAge: 4,
+    maxAge: 100,
+    description:
+        'Psetera jucarie. Replica Pestera Ungurul Mare, Suncuius, Jud. Bihor. Contine si mini lilieci de jucarie pe tavan.',
+    dateAdded: DateTime.now(),
+  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,13 +50,22 @@ class TradeStep2 extends StatelessWidget {
                   flex: 2,
                   child: Row(
                     children: [
-                      Expanded(child: ToyShortView()),
+                      Expanded(
+                          child: ToyShortView(
+                        toy: toy,
+                        textColor: AppColors.CREAM,
+                      )),
                       Icon(
                         Icons.multiple_stop,
                         size: 50,
                         color: AppColors.DARK,
                       ),
-                      Expanded(child: ToyShortView()),
+                      Expanded(
+                        child: ToyShortView(
+                          toy: toy,
+                          textColor: AppColors.CREAM,
+                        ),
+                      ),
                     ],
                   ),
                 ),
@@ -55,7 +75,7 @@ class TradeStep2 extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "By clicking NEXT\nthe request will be sent\nto the owner.\nFurther details are\narranged later with\nthe other trader.",
+                        "By clicking NEXT\nthe request will be sent\nto the owner.\nExchange details are\narranged later with\nthe other trader.",
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 22,
@@ -75,6 +95,7 @@ class TradeStep2 extends StatelessWidget {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: 20,
+                          color: AppColors.WINE_RED,
                         ),
                       ),
                     ],

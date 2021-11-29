@@ -4,8 +4,10 @@ import 'package:toystm/models/toy.dart';
 import '../ui_specs.dart';
 
 class ToyShortView extends StatelessWidget {
-  ToyShortView();
-  //ToyShortView(ToyFirestoreModel toy);
+  Color? textColor;
+  ToyFirestoreModel toy;
+
+  ToyShortView({required ToyFirestoreModel this.toy, Color? this.textColor});
 
   @override
   Widget build(BuildContext context) {
@@ -15,18 +17,17 @@ class ToyShortView extends StatelessWidget {
         Container(
           width: 100,
           height: 130,
-          //margin: EdgeInsets.only(top: 10),
-          child: Image.asset('assets/images/IMG_7805.jpg'),
+          child: Image.asset(this.toy.image),
         ),
         SizedBox(
           height: 7,
         ),
         Text(
-          "ce o fi",
+          this.toy.name,
           style: TextStyle(
             fontSize: 14,
             //fontWeight: FontWeight.bold,
-            color: AppColors.DARK,
+            color: this.textColor != null ? this.textColor : AppColors.DARK,
           ),
         ),
       ],
