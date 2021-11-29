@@ -9,6 +9,7 @@ import 'package:toystm/screens/pendings-list.dart';
 import 'package:toystm/screens/register.dart';
 import 'package:toystm/screens/search.dart';
 import 'package:toystm/screens/toy_details.dart';
+import 'package:toystm/screens/trade_step_0.dart';
 import 'package:toystm/screens/trade_step_2.dart';
 import 'package:toystm/screens/trade_step_3.dart';
 import 'package:toystm/screens/user_profile.dart';
@@ -35,7 +36,8 @@ class _ToysTMAppState extends State<ToysTMApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TradeStep2(),
+      home: TradeStep0(),
+      //TradeStep2(),
       //TradeStep3(),
       //MyToyView(),
       //ToyDetails(),
