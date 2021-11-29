@@ -80,6 +80,12 @@ class TradeStep2 extends StatelessWidget {
                     ],
                   ),
                 ),
+                // Expanded(
+                //   child: BottomButton(
+                //     text: "cancel",
+                //     side_padding: 0,
+                //   ),
+                // ),
                 Expanded(
                   child: Container(
                     padding: EdgeInsets.only(bottom: 25),
