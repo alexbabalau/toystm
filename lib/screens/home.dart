@@ -71,12 +71,12 @@ class _HomeState extends State<Home> {
       body: Container(
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
-          controller: scrollController,
+          //controller: scrollController,
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               BackgroundImage("assets/images/home-screen.png"),
-              ToysGridView(this.toys),
+              ToysFirestoreRenderer(),
             ],
           ),
         ),
