@@ -6,6 +6,7 @@ import 'package:toystm/screens/add_toy.dart';
 import 'package:toystm/screens/home.dart';
 import 'package:toystm/screens/log_in.dart';
 import 'package:toystm/screens/my_toy_view.dart';
+import 'package:toystm/screens/my_toys.dart';
 import 'package:toystm/screens/notifications-center.dart';
 import 'package:toystm/screens/pendings-list.dart';
 import 'package:toystm/screens/register.dart';
@@ -71,7 +72,8 @@ class _ToysTMAppState extends State<ToysTMApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TradeStep1(),
+      home: MyToys(),
+      //TradeStep1(),
       //TradeStep0(),
       //TradeStep2(),
       //TradeStep3(),
