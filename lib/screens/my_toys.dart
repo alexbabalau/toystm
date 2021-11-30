@@ -16,8 +16,7 @@ class MyToys extends StatelessWidget {
       appBar: CustomAppBar(),
       body: Container(
         height: MediaQuery.of(context).size.height,
-        child: //ToysFirestoreRenderer(),
-            ToysGridView([toy]),
+        child: ToysFirestoreRenderer(),
       ),
     );
   }

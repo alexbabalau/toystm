@@ -72,7 +72,8 @@ class _ToysTMAppState extends State<ToysTMApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: TradeStep1(),
+      home: MyToys(),
+      //TradeStep1(),
       //TradeStep0(),
       //TradeStep2(),
       //TradeStep3(),
