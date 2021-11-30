@@ -41,5 +41,11 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Add a toy</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Add a toy</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Add a toy</string> 
 </dict>
 </plist>
