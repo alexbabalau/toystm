@@ -4,7 +4,7 @@ import 'package:toystm/shared/elements/custom_app_bar.dart';
 import 'package:toystm/shared/ui_specs.dart';
 import 'package:toystm/widgets/toys_grid/toys_firestore_renderer.dart';
 
-class MyToys extends StatelessWidget {
+class FavouriteToys extends StatelessWidget {
   ToyFirestoreModel toy = ToyFirestoreModel(dateAdded: DateTime.now());
 
   @override
