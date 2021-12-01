@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:toystm/models/pending_transaction.dart';
 import 'package:toystm/screens/add_toy.dart';
+import 'package:toystm/screens/favourite_toys.dart';
 import 'package:toystm/screens/home.dart';
 import 'package:toystm/screens/log_in.dart';
 import 'package:toystm/screens/my_toy_view.dart';
@@ -72,7 +73,8 @@ class _ToysTMAppState extends State<ToysTMApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: MyToys(),
+      home: FavouriteToys(),
+      //MyToys(),
       //TradeStep1(),
       //TradeStep0(),
       //TradeStep2(),
