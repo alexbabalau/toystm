@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:toystm/services/firebase_storage.dart';
 import 'package:toystm/shared/elements/background_image.dart';
+import 'package:toystm/shared/elements/bottom_button.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
 import 'package:toystm/shared/elements/custom_text_field.dart';
 import 'package:toystm/shared/ui_specs.dart';
@@ -17,8 +19,10 @@ class AddToy extends StatefulWidget {
 
 class _AddToyState extends State<AddToy> {
   final ImagePicker _imagePicker = ImagePicker();
+  final FirebaseStorageService _firebaseStorageService =
+      FirebaseStorageService();
   XFile? _image;
-
+  File? _imageFile;
 
   var _imagePath = '';
 
@@ -28,10 +32,13 @@ class _AddToyState extends State<AddToy> {
   var _descriptionController = TextEditingController();
 
   Future<void> _pickImage() async {
-    var _pickedImage = await _imagePicker.pickImage(source: ImageSource.gallery);
-    setState(){
+    var _pickedImage =
+        await _imagePicker.pickImage(source: ImageSource.gallery);
+    setState(() {
       _image = _pickedImage;
-    }
+      print('here');
+      _imageFile = File(_image!.path);
+    });
   }
 
   @override
@@ -59,6 +66,7 @@ class _AddToyState extends State<AddToy> {
                     _image == null
                         ? InkWell(
                             onTap: () {
+                              print('Tap');
                               _pickImage();
                             },
                             child: Padding(
@@ -67,23 +75,45 @@ class _AddToyState extends State<AddToy> {
                                 height: 150,
                                 width: 150,
                                 child: Container(
-                                    color: AppColors.BRONZE_ORANGE,
-                                    child: DottedBorder(
-                                        strokeWidth: 2,
-                                        color: AppColors.BRONZE_ORANGE,
-                                        child:
-                                            Center(child: Text('Add a photo')))),
+                                  color: AppColors.DARK,
+                                  child: DottedBorder(
+                                    strokeWidth: 2,
+                                    color: AppColors.DARK,
+                                    child: Center(
+                                      child: Text(
+                                        'Add a photo',
+                                        style: TextStyle(
+                                          color: AppColors.CREAM,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
                               ),
                             ),
-                        )
-                        : Image.file(File(_image!.path),
-                            height: 160, width: 160),
+                          )
+                        : InkWell(
+                            onTap: () {
+                              _pickImage();
+                            },
+                            child: Image.file(File(_image!.path),
+                                height: 160, width: 160),
+                          ),
                     SizedBox(height: 30),
                     CustomTextField('title', _titleController, false),
                     CustomTextField('minAge', _minAgeController, false),
                     CustomTextField('maxAge', _maxAgeController, false),
                     CustomTextField(
-                        'description', _descriptionController, false)
+                        'description', _descriptionController, false),
+                    BottomButton(
+                      text: 'Add toy',
+                      backgroundColor: AppColors.WINE_RED,
+                      textColor: AppColors.WHITE,
+                      buttonAction: () {
+                        _firebaseStorageService.uploadImageToFirestore(
+                            _imageFile!, 'id');
+                      },
+                    )
                   ],
                 ),
               )
