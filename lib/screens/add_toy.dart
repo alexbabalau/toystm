@@ -3,7 +3,9 @@ import 'dart:io';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:toystm/models/toy.dart';
 import 'package:toystm/services/firebase_storage.dart';
+import 'package:toystm/services/firestore.dart';
 import 'package:toystm/shared/elements/background_image.dart';
 import 'package:toystm/shared/elements/bottom_button.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
@@ -21,6 +23,7 @@ class _AddToyState extends State<AddToy> {
   final ImagePicker _imagePicker = ImagePicker();
   final FirebaseStorageService _firebaseStorageService =
       FirebaseStorageService();
+  final FirestoreService _firestoreService = FirestoreService();
   XFile? _image;
   File? _imageFile;
 
@@ -110,8 +113,14 @@ class _AddToyState extends State<AddToy> {
                       backgroundColor: AppColors.WINE_RED,
                       textColor: AppColors.WHITE,
                       buttonAction: () {
-                        _firebaseStorageService.uploadImageToFirestore(
-                            _imageFile!, 'id');
+                        ToyFirestoreModel toyFirestoreModel = ToyFirestoreModel(
+                            name: _titleController.text,
+                            minAge: int.parse(_minAgeController.text),
+                            maxAge: int.parse(_maxAgeController.text),
+                            description:
+                                _descriptionController.text,
+                            dateAdded: DateTime.now());
+                            _firestoreService.addToy(toyFirestoreModel, _imageFile);
                       },
                     )
                   ],

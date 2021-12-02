@@ -45,7 +45,11 @@ class CustomElevatedButton extends StatelessWidget {
         this.text,
         style: TextStyle(color: this.textColor, fontSize: this.textSize),
       ),
-      onPressed: this.buttonAction == null ? null : () {this.buttonAction!();},
+      onPressed: this.buttonAction == null
+          ? null
+          : () {
+              this.buttonAction!();
+            },
     );
   }
 }
