@@ -13,6 +13,7 @@ import 'package:toystm/screens/pendings-list.dart';
 import 'package:toystm/screens/register.dart';
 import 'package:toystm/screens/search.dart';
 import 'package:toystm/screens/toy_view.dart';
+import 'package:toystm/screens/trade_request_notification.dart';
 import 'package:toystm/screens/trade_step_1.dart';
 import 'package:toystm/screens/user_profile.dart';
 import 'package:toystm/services/firestore.dart';
@@ -73,7 +74,8 @@ class _ToysTMAppState extends State<ToysTMApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: FavouriteToys(),
+      home: TradeRequestNotification(),
+      //FavouriteToys(),
       //MyToys(),
       //TradeStep1(),
       //TradeStep0(),
