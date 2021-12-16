@@ -36,7 +36,7 @@ class PendingTradeNotification extends StatelessWidget {
         width: double.infinity,
         child: Stack(
           children: [
-            //BackgroundImage("assets/images/user_data.png"),
+            BackgroundImage("assets/images/img6.png"),
             Column(
               children: [
                 Expanded(
@@ -105,7 +105,7 @@ class PendingTradeNotification extends StatelessWidget {
                       Icon(
                         Icons.multiple_stop,
                         size: 50,
-                        color: AppColors.WINE_RED,
+                        color: AppColors.DARK,
                       ),
                       Expanded(
                         child: ToyShortView(
