@@ -46,6 +46,10 @@ class AuthenticationService{
     return this.firebaseAuth.signOut();
   }
 
+  Stream<User?> authStateChanges(){
+    return this.firebaseAuth.authStateChanges();
+  }
+
   User? getCurrentUser(){
     return this.firebaseAuth.currentUser;
   }
