@@ -51,7 +51,7 @@ class _ToyDetailsState extends State<ToyDetails> {
 
   Future<dynamic> _changeFavourite() async{
     this._isAddedToFavourites = !this._isAddedToFavourites;
-    await this._firestoreService.toggleFavourite(userId, widget.toyId);
+    await this._firestoreService.toggleFavourite(widget.toyId, userId);
     setState(() => {_fetchFuture = Future.wait([Future.value(this._isAddedToFavourites), Future.value(this.toy)])});
   }
 

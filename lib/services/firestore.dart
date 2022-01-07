@@ -71,15 +71,18 @@ class FirestoreService {
     });
   }
 
-  Future<List<ToyFirestoreModel>> getFavouritesForUser(User user) async{
+  Future<List<ToyFirestoreModel>> getFavouritesForUser(String userId) async{
+    print('Here');
     CollectionReference favourites = FirebaseFirestore.instance.collection('Favourites');
     QuerySnapshot<Map<String, dynamic>> queryDocumentSnapshot =
         await FirebaseFirestore.instance
             .collection('Favourites')
-            .where('userId', isEqualTo: user.uid)
+            .where('userId', isEqualTo: userId)
             .get();
     List<DocumentSnapshot<Map<String, dynamic>>> documents = queryDocumentSnapshot.docs.toList();
-    List<String> toyIds = documents.map((doc) => doc.exists ? (doc.data()!['id'] as String) : '').toList();
+    //print(documents)
+    List<String> toyIds = documents.map((doc) => doc.exists ? (doc.data()!['toyId'] as String) : '').toList();
+    print(toyIds);
     return await getToysByIds(toyIds);   
   }
 
@@ -88,7 +91,7 @@ class FirestoreService {
       await FirebaseFirestore.instance
         .collection('Toys')
         .where('id', whereIn: ids)
-        .orderBy('dateAdded')
+        //.orderBy('dateAdded')
         .get();
     return queryDocumentSnapshot.docs.toList().map((doc) => ToyFirestoreModel.fromDocumentSnapshot(doc)).toList();
   }
@@ -140,7 +143,7 @@ class FirestoreService {
       .doc(id)
       .delete();
    }
-   
+
   }
 
 }
