@@ -5,7 +5,7 @@ import 'package:toystm/shared/ui_specs.dart';
 import 'package:toystm/widgets/toys_grid/toys_firestore_renderer.dart';
 
 class MyToys extends StatelessWidget {
-  ToyFirestoreModel toy = ToyFirestoreModel(dateAdded: DateTime.now());
+  //ToyFirestoreModel toy = ToyFirestoreModel(dateAdded: DateTime.now());
 
   @override
   Widget build(BuildContext context) {

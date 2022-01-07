@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import 'package:toystm/models/toy.dart';
 import 'package:toystm/services/firebase_storage.dart';
@@ -49,15 +50,97 @@ class FirestoreService {
       'dateAdded': toy.dateAdded,
       'minAge': toy.minAge,
       'image': null,
-      'maxAge': toy.maxAge // 42
+      'maxAge': toy.maxAge,
+      'user': toy.userId // 42
     });
     if(imageFile != null){
       String id = toyRef.id;
       String url = await _firebaseStorageService.uploadImageToFirestore(imageFile, toyRef.id);
-      await toyRef.set({'image': url},
+      await toyRef.set({'image': url, 'id': id},
         SetOptions(merge: true));
     }
       
  
   }
+
+  Future<void> addFavourite(ToyFirestoreModel toy, User user)async {
+    CollectionReference favourites = FirebaseFirestore.instance.collection('Favourites');
+    await favourites.add({
+      'userId': user.uid,
+      'toyId': toy.id
+    });
+  }
+
+  Future<List<ToyFirestoreModel>> getFavouritesForUser(User user) async{
+    CollectionReference favourites = FirebaseFirestore.instance.collection('Favourites');
+    QuerySnapshot<Map<String, dynamic>> queryDocumentSnapshot =
+        await FirebaseFirestore.instance
+            .collection('Favourites')
+            .where('userId', isEqualTo: user.uid)
+            .get();
+    List<DocumentSnapshot<Map<String, dynamic>>> documents = queryDocumentSnapshot.docs.toList();
+    List<String> toyIds = documents.map((doc) => doc.exists ? (doc.data()!['id'] as String) : '').toList();
+    return await getToysByIds(toyIds);   
+  }
+
+  Future<List<ToyFirestoreModel>> getToysByIds(List<String> ids) async{
+    QuerySnapshot<Map<String, dynamic>> queryDocumentSnapshot = 
+      await FirebaseFirestore.instance
+        .collection('Toys')
+        .where('id', whereIn: ids)
+        .orderBy('dateAdded')
+        .get();
+    return queryDocumentSnapshot.docs.toList().map((doc) => ToyFirestoreModel.fromDocumentSnapshot(doc)).toList();
+  }
+
+  Future<ToyFirestoreModel?> getToyById(String id) async{
+    QuerySnapshot<Map<String, dynamic>> queryDocumentSnapshot = 
+      await FirebaseFirestore.instance
+        .collection('Toys')
+        .where('id', isEqualTo: id)
+        .get();
+      if(queryDocumentSnapshot.docs.toList().length == 0)
+        return null;
+      return queryDocumentSnapshot.docs.toList().map((doc) => ToyFirestoreModel.fromDocumentSnapshot(doc)).toList()[0];
+  }
+
+  Future<String> getFavouriteId(String toyId, String userId) async{
+    QuerySnapshot<Map<String, dynamic>> queryDocumentSnapshot = 
+      await FirebaseFirestore.instance
+        .collection('Favourites')
+        .where('userId', isEqualTo: userId)
+        .where('toyId', isEqualTo: toyId)
+        .get();
+    return queryDocumentSnapshot.docs.toList()[0].id;   
+  }
+
+  Future<bool> isFavourite(String toyId, String userId) async{
+    QuerySnapshot<Map<String, dynamic>> queryDocumentSnapshot = 
+      await FirebaseFirestore.instance
+        .collection('Favourites')
+        .where('userId', isEqualTo: userId)
+        .where('toyId', isEqualTo: toyId)
+        .get();
+    return queryDocumentSnapshot.docs.toList().length > 0;
+  }
+
+  Future<void> toggleFavourite(String toyId, String userId) async{
+   bool exists = await isFavourite(toyId, userId);
+   CollectionReference favourites = FirebaseFirestore.instance.collection('Favourites');
+   if(!exists){
+    await favourites.add({
+      'userId': userId, // John Doe
+      'toyId': toyId // 42
+    });
+   }
+
+   else{
+    String id = await getFavouriteId(toyId, userId);
+    await favourites
+      .doc(id)
+      .delete();
+   }
+   
+  }
+
 }

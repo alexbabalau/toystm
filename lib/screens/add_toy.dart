@@ -128,7 +128,8 @@ class _AddToyState extends State<AddToy> {
                             maxAge: int.parse(_maxAgeController.text),
                             description:
                                 _descriptionController.text,
-                            dateAdded: DateTime.now());
+                            dateAdded: DateTime.now(),
+                            userId: _authService.getCurrentUser()!.uid);
                             _firestoreService.addToy(toyFirestoreModel, _imageFile);
                       },
                     )

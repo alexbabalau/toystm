@@ -4,9 +4,16 @@ import 'package:toystm/shared/elements/custom_app_bar.dart';
 import 'package:toystm/shared/ui_specs.dart';
 import 'package:toystm/widgets/toys_grid/toys_firestore_renderer.dart';
 
-class FavouriteToys extends StatelessWidget {
-  ToyFirestoreModel toy = ToyFirestoreModel(dateAdded: DateTime.now());
+class FavouriteToys extends StatefulWidget {
+  //ToyFirestoreModel toy = ToyFirestoreModel(dateAdded: DateTime.now());
 
+  @override
+  State<FavouriteToys> createState() => _FavouriteToysState();
+}
+
+class _FavouriteToysState extends State<FavouriteToys> {
+  
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
