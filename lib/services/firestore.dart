@@ -86,6 +86,15 @@ class FirestoreService {
     return await getToysByIds(toyIds);   
   }
 
+  Future<List<ToyFirestoreModel>> getUserToys(String userId) async{
+    QuerySnapshot<Map<String, dynamic>> queryDocumentSnapshot =
+        await FirebaseFirestore.instance
+            .collection('Toys')
+            .where('userId', isEqualTo: userId)
+            .get();
+    return queryDocumentSnapshot.docs.toList().map((doc) => ToyFirestoreModel.fromDocumentSnapshot(doc)).toList();
+  }
+
   Future<List<ToyFirestoreModel>> getToysByIds(List<String> ids) async{
     QuerySnapshot<Map<String, dynamic>> queryDocumentSnapshot = 
       await FirebaseFirestore.instance
