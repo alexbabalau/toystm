@@ -79,7 +79,7 @@ class _ToysTMAppState extends State<ToysTMApp> {
       //TradeRequestNotification(),
       //FavouriteToys(),
       //MyToys(),
-      TradeStep1(),
+      //TradeStep1(),
       //TradeStep0(),
       //TradeStep2(),
       //TradeStep3(),
