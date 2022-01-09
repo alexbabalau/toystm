@@ -1,3 +1,4 @@
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class TransactionFirestoreModel{
@@ -6,8 +7,12 @@ class TransactionFirestoreModel{
   final String status; // can be PENDING or ACCEPTED
   final DateTime date;
   final String id;
+  final String senderUsername;
+  final String receiverUsername;
+  final String receiverToyId;
+  final String senderToyId;
 
-  TransactionFirestoreModel({required this.receiverUserId, required this.senderUserId, required this.date, this.status = 'Trade Request', this.id = ''});
+  TransactionFirestoreModel({required this.receiverUserId, required this.senderUserId, required this.date, this.status = 'Trade Request', this.id = '', required this.receiverUsername, required this.senderUsername, this.receiverToyId = '', this.senderToyId = ''});
   
   static TransactionFirestoreModel fromDocumentSnapshot(DocumentSnapshot<Map<String, dynamic>> documentSnapshot){
     
@@ -20,8 +25,12 @@ class TransactionFirestoreModel{
     return TransactionFirestoreModel(
       receiverUserId: data['receiverUserId'],
       senderUserId: data['senderUserId'],
+      receiverUsername: data['receiverUsername'],
+      senderUsername: data['senderUsername'],
       date: data['date'].toDate(),
       status: data['status'],
+      receiverToyId: data['receiverToyId'],
+      senderToyId: data['senderToyId'],
       id: documentSnapshot.id
     );
   }

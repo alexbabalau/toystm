@@ -6,12 +6,12 @@ class TransactionNotification {
   final String title;
   final String username;
   final DateTime date;
+  final TransactionFirestoreModel? transaction;
 
   TransactionNotification(
-      {required this.title, required this.username, required this.date});
+      {required this.title, required this.username, required this.date, this.transaction});
   
-  static Future<TransactionNotification> fromTransactionFirestoreModel(TransactionFirestoreModel transaction) async{
-    UserFirestoreModel user = await UserService().findUserById(transaction.senderUserId);
-    return TransactionNotification(title: transaction.status, username: user.username, date: transaction.date);
+  static TransactionNotification fromTransactionFirestoreModel(TransactionFirestoreModel transaction){
+    return TransactionNotification(title: transaction.status, username: transaction.senderUsername, date: transaction.date, transaction: transaction);
   }
 }

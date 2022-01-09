@@ -27,7 +27,9 @@ class _NotificationsCenterState extends State<NotificationsCenter> {
 
   Future<List<TransactionNotification>> _fetchTransactions() async{
     List<TransactionFirestoreModel> transactions = await TransactionService().getTransactionsReceivedByUser(userId);
-    return await Future.wait(transactions.map((transaction) => TransactionNotification.fromTransactionFirestoreModel(transaction)).toList());
+    return transactions.map((transaction) => TransactionNotification.fromTransactionFirestoreModel(transaction)).toList();
+    //
+    //return await Future.wait(transactions.map((transaction) => TransactionNotification.fromTransactionFirestoreModel(transaction)).toList());
   }
 
   @override
