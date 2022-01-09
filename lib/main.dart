@@ -85,13 +85,13 @@ class _ToysTMAppState extends State<ToysTMApp> {
       //TradeStep3(),
       //MyToyView(),
       //ToyDetails(toyId: '6BbhfUVj1ZB4lNIp5iHa'),
-      //UserProfile(),
+      UserProfile(),
       //Search(),
       //NotificationsCenter(),
       //PendingsList(),
       //Register(),
       //LogIn(),
-      Home(),
+      //Home(),
       //FetchTest()
       //AddToy(),
     );
