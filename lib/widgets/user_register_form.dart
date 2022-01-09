@@ -1,4 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:toystm/screens/home.dart';
+import 'package:toystm/services/authentication.dart';
 import 'package:toystm/shared/elements/custom_text_field.dart';
 import 'package:toystm/shared/ui_specs.dart';
 
@@ -20,6 +23,8 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
 
   bool _isPasswordValid = true;
   bool _isUsernameValid = true;
+
+  String? error = null;
 
   @override
   Widget build(BuildContext context) {
@@ -63,6 +68,7 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
                     ),
               CustomTextField('email', _emailController, false),
               CustomTextField('phone (optional)', _phoneController, false),
+              Text(this.error ?? '')
             ],
           ),
         ),
@@ -85,12 +91,24 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
                 'Register',
                 style: TextStyle(color: AppColors.CREAM, fontSize: 16),
               ),
-              onPressed: () {
+              onPressed: () async{
                 setState(() {
                   _isPasswordValid = _validPassword(_passwordController.text,
                       _confirmedPasswordController.text);
                   _isUsernameValid = _validUsername(_usernameController.text);
+                  if(!_isPasswordValid || !_isUsernameValid){
+                    this.error = 'Username or password invalid';
+                  }
                 });
+                User? user = await AuthenticationService().registerWithEmailAndPassword(_emailController.text, _passwordController.text, _usernameController.text);
+                if(user == null){
+                  setState(() {
+                    this.error = 'Invalid field, retry';
+                  });
+                }
+                else{
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
+                }
               },
             ),
           ),
@@ -106,7 +124,7 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
   }
 
   bool _validPassword(String password, String passwordConfimed) {
-    if (password != passwordConfimed) return false;
+    if (password.length== 0 || password != passwordConfimed) return false;
     return true;
   }
 }
