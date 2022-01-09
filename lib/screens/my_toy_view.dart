@@ -16,6 +16,8 @@ class MyToyView extends StatelessWidget {
     dateAdded: DateTime.now(),
   );
 
+  MyToyView({required this.toy});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:toystm/screens/home.dart';
+import 'package:toystm/screens/register.dart';
 import 'package:toystm/services/authentication.dart';
 import 'package:toystm/shared/elements/background_image.dart';
 import 'package:toystm/shared/elements/custom_text_field.dart';
@@ -17,6 +20,8 @@ class _LogInState extends State<LogIn> {
 
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
+
+  String? error = null;
 
   @override
   Widget build(BuildContext context) {
@@ -47,10 +52,21 @@ class _LogInState extends State<LogIn> {
                       children: [
                         Expanded(
                           child: TextButton(
-                            onPressed: () {
-                              authenticationService.signInWithEmailAndPassword(
-                                  emailController.text,
-                                  passwordController.text);
+                            onPressed: () async {
+                              User? user = await authenticationService
+                                  .signInWithEmailAndPassword(
+                                      emailController.text,
+                                      passwordController.text);
+                              if (user == null) {
+                                setState(() {
+                                  this.error = 'Email or password not correct';
+                                });
+                              } else
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (BuildContext context) =>
+                                            Home()));
                             },
                             child: Align(
                               alignment: Alignment.centerLeft,
@@ -64,7 +80,9 @@ class _LogInState extends State<LogIn> {
                         ),
                         Expanded(
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Register()));
+                            },
                             child: Align(
                               alignment: Alignment.centerRight,
                               child: Text(
@@ -77,7 +95,10 @@ class _LogInState extends State<LogIn> {
                         ),
                       ],
                     ),
-                  )
+                  ),
+                  Text(
+                    this.error ?? '',
+                  ),
                 ],
               ),
             )
