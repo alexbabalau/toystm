@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:toystm/screens/log_in.dart';
+import 'package:toystm/services/authentication.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:toystm/models/toy.dart';
 import 'package:toystm/services/firebase_storage.dart';
@@ -33,6 +35,7 @@ class _AddToyState extends State<AddToy> {
   var _minAgeController = TextEditingController();
   var _maxAgeController = TextEditingController();
   var _descriptionController = TextEditingController();
+  var _authService = AuthenticationService();
 
   Future<void> _pickImage() async {
     var _pickedImage =
@@ -53,6 +56,12 @@ class _AddToyState extends State<AddToy> {
 
   @override
   Widget build(BuildContext context) {
+    if (_authService.getCurrentUser() == null) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => LogIn()),
+      );
+    }
     return Scaffold(
         appBar: CustomAppBar(),
         body: Container(
@@ -119,7 +128,8 @@ class _AddToyState extends State<AddToy> {
                             maxAge: int.parse(_maxAgeController.text),
                             description:
                                 _descriptionController.text,
-                            dateAdded: DateTime.now());
+                            dateAdded: DateTime.now(),
+                            userId: _authService.getCurrentUser()!.uid);
                             _firestoreService.addToy(toyFirestoreModel, _imageFile);
                       },
                     )

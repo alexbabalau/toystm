@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:toystm/models/user.dart';
 import 'package:toystm/shared/ui_specs.dart';
 
-class UserInfo extends StatelessWidget {
-  const UserInfo({
+class UserFirestoreModelInfo extends StatelessWidget {
+  const UserFirestoreModelInfo({
     Key? key,
     required this.testUser,
   }) : super(key: key);

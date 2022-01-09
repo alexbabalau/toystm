@@ -75,7 +75,7 @@ class _ToysTMAppState extends State<ToysTMApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: PendingTradeNotification(),
+      home: //PendingTradeNotification(),
       //TradeRequestNotification(),
       //FavouriteToys(),
       //MyToys(),
@@ -84,13 +84,13 @@ class _ToysTMAppState extends State<ToysTMApp> {
       //TradeStep2(),
       //TradeStep3(),
       //MyToyView(),
-      //ToyDetails(),
+      //ToyDetails(toyId: '6BbhfUVj1ZB4lNIp5iHa'),
       //UserProfile(),
       //Search(),
       //NotificationsCenter(),
       //PendingsList(),
       //Register(),
-      //LogIn(),
+      LogIn(),
       //Home(),
       //FetchTest()
       //AddToy(),

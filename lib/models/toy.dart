@@ -8,8 +8,10 @@ class ToyFirestoreModel{
   final int minAge;
   final int maxAge;
   final DateTime dateAdded;
+  final String userId;
+  final String id;
 
-  ToyFirestoreModel({this.image = '', this.name = '', this.description = '', this.minAge = 0, this.maxAge = 99, required this.dateAdded});
+  ToyFirestoreModel({this.image = '', this.name = '', this.description = '', this.minAge = 0, this.maxAge = 99, required this.dateAdded, this.userId = '', this.id = ''});
 
   static ToyFirestoreModel fromDocumentSnapshot(DocumentSnapshot<Map<String, dynamic>> documentSnapshot){
     
@@ -25,7 +27,9 @@ class ToyFirestoreModel{
       description: data['description'],
       minAge: data['minAge'],
       maxAge: data['maxAge'],
-      dateAdded: data['dateAdded'].toDate()
+      dateAdded: data['dateAdded'].toDate(),
+      userId: data['userId'] ?? '',
+      id: documentSnapshot.id
     );
   }
 
@@ -36,7 +40,9 @@ class ToyFirestoreModel{
       'description': this.description,
       'minAge': this.minAge,
       'maxAge': this.maxAge,
-      'dateAdded': this.dateAdded
+      'dateAdded': this.dateAdded,
+      'userId': this.userId,
+      'id': this.id
     };
   }  
 }

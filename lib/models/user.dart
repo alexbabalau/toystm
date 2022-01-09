@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:toystm/models/transaction.dart';
 
 class UserFirestoreModel {
@@ -21,6 +22,17 @@ class UserFirestoreModel {
       this.sentTransactions,
       this.receivedTransactions,
       this.acceptedTransactions});
+
+  static UserFirestoreModel fromDocumentSnapshot(DocumentSnapshot<Map<String, dynamic>> documentSnapshot){
+    return UserFirestoreModel(
+      userId: documentSnapshot.id,
+      username: documentSnapshot['username'],
+      email: documentSnapshot['email'],
+      phone: documentSnapshot['phone'],
+      firstName: documentSnapshot['firstName'],
+      lastName: documentSnapshot['lastName']
+    );
+  }
 
   Map<String, dynamic> toJson(){
     return {
