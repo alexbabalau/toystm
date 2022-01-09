@@ -5,9 +5,9 @@ import 'package:toystm/shared/elements/list_toy_item.dart';
 
 class ToysGridView extends StatelessWidget {
   final List<ToyFirestoreModel> toys;
-  double substractedHeight;
+  double subtractedHeight;
 
-  ToysGridView(this.toys, {this.substractedHeight = 0.0});
+  ToysGridView(this.toys, {this.subtractedHeight = 0.0});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class ToysGridView extends StatelessWidget {
       margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
       height: MediaQuery.of(context).size.height -
           CustomAppBar().preferredSize.height -
-          this.substractedHeight,
+          this.subtractedHeight,
       child: GridView.builder(
           physics: NeverScrollableScrollPhysics(),
           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
