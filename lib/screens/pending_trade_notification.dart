@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toystm/models/pending_transaction.dart';
 import 'package:toystm/models/toy.dart';
 import 'package:toystm/models/transaction.dart';
 import 'package:toystm/models/user.dart';
@@ -14,7 +15,7 @@ import 'package:toystm/shared/elements/toy_short_view.dart';
 import 'package:toystm/shared/ui_specs.dart';
 
 class PendingTradeNotification extends StatefulWidget {
-  TransactionFirestoreModel transaction;
+  PendingTransaction transaction;
   PendingTradeNotification({required this.transaction});
   @override
   State<PendingTradeNotification> createState() => _PendingTradeNotificationState();
@@ -43,8 +44,8 @@ class _PendingTradeNotificationState extends State<PendingTradeNotification> {
   late Future<dynamic> _fetchFuture;
 
   Future<dynamic> _fetchTransactionDetails() async{
-    String fetchUserId = this.userId == widget.transaction.senderToyId ? widget.transaction.receiverToyId : widget.transaction.senderToyId;
-    return await Future.wait([UserService().findUserById(fetchUserId), FirestoreService().getToyById(widget.transaction.senderToyId), FirestoreService().getToyById(widget.transaction.receiverToyId)]);
+    String fetchUserId = this.userId == widget.transaction.userId1 ? widget.transaction.userId2 : widget.transaction.userId1;
+    return await Future.wait([UserService().findUserById(fetchUserId), FirestoreService().getToyById(widget.transaction.toyId1), FirestoreService().getToyById(widget.transaction.toyId2)]);
   }
 
   /*Future<List<TransactionFirestoreModel>> _fetchPendingTransactions() async{

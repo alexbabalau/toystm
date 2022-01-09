@@ -88,10 +88,10 @@ class _ToysTMAppState extends State<ToysTMApp> {
       //UserProfile(),
       //Search(),
       //NotificationsCenter(),
-      //PendingsList(),
+      PendingsList(),
       //Register(),
       //LogIn(),
-      Home(),
+      //Home(),
       //FetchTest()
       //AddToy(),
     );
