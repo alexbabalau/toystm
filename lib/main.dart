@@ -91,7 +91,7 @@ class _ToysTMAppState extends State<ToysTMApp> {
       //PendingsList(),
       //Register(),
       //LogIn(),
-      //Home(),
+      Home(),
       //FetchTest()
       //AddToy(),
     );

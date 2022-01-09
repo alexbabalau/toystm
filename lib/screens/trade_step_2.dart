@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toystm/models/toy.dart';
+import 'package:toystm/models/transaction.dart';
 import 'package:toystm/shared/elements/background_image.dart';
 import 'package:toystm/shared/elements/bottom_button.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
@@ -7,7 +8,17 @@ import 'package:toystm/shared/elements/custom_elevated_button.dart';
 import 'package:toystm/shared/elements/toy_short_view.dart';
 import 'package:toystm/shared/ui_specs.dart';
 
-class TradeStep2 extends StatelessWidget {
+class TradeStep2 extends StatefulWidget {
+  TransactionFirestoreModel transaction;
+  ToyFirestoreModel senderToy;
+  ToyFirestoreModel receiverToy;
+
+  TradeStep2({required this.transaction, required this.senderToy, required this.receiverToy});
+  @override
+  State<TradeStep2> createState() => _TradeStep2State();
+}
+
+class _TradeStep2State extends State<TradeStep2> {
   ToyFirestoreModel toy = ToyFirestoreModel(
     image: 'assets/images/IMG_7805.jpg',
     name: 'Pestera',
@@ -52,7 +63,7 @@ class TradeStep2 extends StatelessWidget {
                     children: [
                       Expanded(
                           child: ToyShortView(
-                        toy: toy,
+                        toy: widget.receiverToy,
                         textColor: AppColors.CREAM,
                       )),
                       Icon(
@@ -62,7 +73,7 @@ class TradeStep2 extends StatelessWidget {
                       ),
                       Expanded(
                         child: ToyShortView(
-                          toy: toy,
+                          toy: widget.senderToy,
                           textColor: AppColors.CREAM,
                         ),
                       ),
