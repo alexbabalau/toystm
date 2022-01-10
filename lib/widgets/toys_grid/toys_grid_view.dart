@@ -6,8 +6,9 @@ import 'package:toystm/shared/elements/list_toy_item.dart';
 class ToysGridView extends StatelessWidget {
   final List<ToyFirestoreModel> toys;
   double subtractedHeight;
+  Function? onPressedToy;
 
-  ToysGridView(this.toys, {this.subtractedHeight = 0.0});
+  ToysGridView(this.toys, {this.subtractedHeight = 0.0, this.onPressedToy});
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +26,11 @@ class ToysGridView extends StatelessWidget {
               mainAxisSpacing: 0),
           itemCount: toys.length,
           itemBuilder: (BuildContext ctx, index) {
-            return ListToyItem(toys[index]);
+            return InkWell(child: ListToyItem(toys[index]), onTap: (){
+              if(onPressedToy != null){
+                this.onPressedToy!(toys[index]);
+              }
+            },);
           }),
     );
   }

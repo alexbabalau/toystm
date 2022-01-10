@@ -1,6 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:toystm/models/toy.dart';
+import 'package:toystm/screens/my_toy_view.dart';
+import 'package:toystm/screens/toy_details.dart';
+import 'package:toystm/services/authentication.dart';
 import 'package:toystm/services/firestore.dart';
 import 'package:toystm/shared/elements/background_image.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
@@ -17,6 +20,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+
+  String userId = AuthenticationService().getCurrentUser()!.uid;
 
   FirestoreService _firestoreService = FirestoreService();
   ScrollController scrollController = ScrollController();
@@ -76,7 +81,12 @@ class _HomeState extends State<Home> {
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
               BackgroundImage("assets/images/home-screen.png"),
-              ToysFirestoreRenderer(),
+              ToysFirestoreRenderer(toysButtonAction: (ToyFirestoreModel toy){
+                if(toy.userId == userId)
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyToyView(toy: toy)));
+                else
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ToyDetails(toyId: toy.id,)));
+              },),
             ],
           ),
         ),

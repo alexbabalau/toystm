@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:toystm/screens/favourite_toys.dart';
+import 'package:toystm/screens/my_toys.dart';
+import 'package:toystm/screens/pendings-list.dart';
 import 'package:toystm/shared/elements/custom_elevated_button.dart';
 import 'package:toystm/shared/ui_specs.dart';
 
@@ -17,6 +20,9 @@ class UserMenu extends StatelessWidget {
             child: CustomElevatedButton(
               text: 'favourites',
               backgroundColor: AppColors.BRONZE_ORANGE,
+              buttonAction: (){
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => FavouriteToys()));
+              },
             ),
           ),
         ),
@@ -26,6 +32,9 @@ class UserMenu extends StatelessWidget {
             child: CustomElevatedButton(
               text: 'my toys',
               backgroundColor: AppColors.LIGHT_ORANGE,
+              buttonAction: (){
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyToys()));
+              },
             ),
           ),
         ),
@@ -35,6 +44,9 @@ class UserMenu extends StatelessWidget {
             child: CustomElevatedButton(
               text: 'pending trx',
               backgroundColor: AppColors.ORANGE,
+              buttonAction: (){
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PendingsList()));
+              },
             ),
           ),
         ),

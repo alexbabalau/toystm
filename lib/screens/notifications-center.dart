@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:toystm/models/notification.dart';
 import 'package:toystm/models/transaction.dart';
+import 'package:toystm/screens/trade_request_notification.dart';
+import 'package:toystm/screens/trade_step_0.dart';
+import 'package:toystm/screens/trade_step_1.dart';
+import 'package:toystm/services/authentication.dart';
 import 'package:toystm/services/transactions.dart';
 import 'package:toystm/shared/elements/background_image.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
@@ -23,7 +27,7 @@ class _NotificationsCenterState extends State<NotificationsCenter> {
           date: DateTime.now())).toList();
 
   late Future<List<TransactionNotification>> _fetchFuture;
-  String userId = 'DoQZ5zGDJAMc1rh6v7UGZd2Jzsn2';
+  String userId = AuthenticationService().getCurrentUser()!.uid;
 
   Future<List<TransactionNotification>> _fetchTransactions() async{
     List<TransactionFirestoreModel> transactions = await TransactionService().getTransactionsReceivedByUser(userId);
@@ -59,7 +63,14 @@ class _NotificationsCenterState extends State<NotificationsCenter> {
             height: MediaQuery.of(context).size.height,
             child: Stack(children: [
               BackgroundImage("assets/images/img3.png"),
-              NotificationsList(snapshot.data),
+              NotificationsList(snapshot.data, onPressedNotification: (TransactionNotification notification){
+                if(notification.title == 'Trade request'){
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TradeStep0(transaction: notification.transaction!,)));
+                }
+                else{
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TradeRequestNotification(transaction: notification.transaction!,)));
+                }
+              },),
             ]),
           ),
         );

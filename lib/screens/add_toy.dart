@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:toystm/screens/home.dart';
 import 'package:toystm/screens/log_in.dart';
 import 'package:toystm/services/authentication.dart';
 import 'package:image_picker/image_picker.dart';
@@ -121,7 +122,7 @@ class _AddToyState extends State<AddToy> {
                       text: 'Add toy',
                       backgroundColor: AppColors.WINE_RED,
                       textColor: AppColors.WHITE,
-                      buttonAction: () {
+                      buttonAction: () async {
                         ToyFirestoreModel toyFirestoreModel = ToyFirestoreModel(
                             name: _titleController.text,
                             minAge: int.parse(_minAgeController.text),
@@ -130,7 +131,8 @@ class _AddToyState extends State<AddToy> {
                                 _descriptionController.text,
                             dateAdded: DateTime.now(),
                             userId: _authService.getCurrentUser()!.uid);
-                            _firestoreService.addToy(toyFirestoreModel, _imageFile);
+                            await _firestoreService.addToy(toyFirestoreModel, _imageFile);
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
                       },
                     )
                   ],

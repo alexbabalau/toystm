@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toystm/models/toy.dart';
 import 'package:toystm/models/transaction.dart';
+import 'package:toystm/screens/trade_step_2.dart';
 import 'package:toystm/services/firestore.dart';
 import 'package:toystm/shared/elements/background_image.dart';
 import 'package:toystm/shared/elements/bottom_button.dart';
@@ -32,13 +33,16 @@ class _TradeStep1State extends State<TradeStep1> {
     dateAdded: DateTime.now(),
   );
 
-  late Future<List<ToyFirestoreModel>> _fetchFuture;
+  late Future<dynamic> _fetchFuture;
   
+  Future<dynamic> _fetchToys() async{
+    return await Future.wait([FirestoreService().getUserToys(widget.transaction.senderUserId), FirestoreService().getToyById(widget.transaction.receiverUserId)]);
+  }
 
   @override
   void initState() {
     // TODO: implement initState
-    this._fetchFuture = FirestoreService().getUserToys(widget.transaction.senderUserId);
+    this._fetchFuture = _fetchToys();
     super.initState();
   }
 
@@ -84,7 +88,10 @@ class _TradeStep1State extends State<TradeStep1> {
                         ),
                       ),
                       ToysGridView(
-                        snapshot.data,
+                        snapshot.data[0],
+                        onPressedToy: (ToyFirestoreModel toy) {
+                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TradeStep2(transaction: widget.transaction, senderToy: toy, receiverToy: snapshot.data[1],)));
+                        },
                         subtractedHeight: 50,
                       ),
                     ],

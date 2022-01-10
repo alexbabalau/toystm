@@ -10,8 +10,8 @@ import 'package:toystm/widgets/toys_grid/toys_grid_view.dart';
 
 class ToysFirestoreRenderer extends StatefulWidget {
   double subtractedHeight;
-
-  ToysFirestoreRenderer({this.subtractedHeight = 0.0});
+  Function? toysButtonAction;
+  ToysFirestoreRenderer({this.subtractedHeight = 0.0, this.toysButtonAction});
 
   @override
   _ToysFirestoreRendererState createState() => _ToysFirestoreRendererState();
@@ -150,7 +150,10 @@ class _ToysFirestoreRendererState extends State<ToysFirestoreRenderer> {
                   ));
                 }
               }
-              return ListToyItem(_toys[index]);
+              return InkWell(onTap:(){
+                if(widget.toysButtonAction != null)
+                  widget.toysButtonAction!.call(_toys[index]);
+              }, child: ListToyItem(_toys[index]));
             }),
       );
     }

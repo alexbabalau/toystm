@@ -4,13 +4,13 @@ class PendingTransaction {
   final String username1;
   final String username2;
   final DateTime date;
-  final String id;
+  String id;
   final String toyId1;
   final String toyId2;
   final String userId1;
   final String userId2;
 
-  PendingTransaction({required this.username1, required this.username2, required this.id, required this.toyId1, required this.toyId2, required this.userId1, required this.userId2, required this.date});
+  PendingTransaction({required this.username1, required this.username2, this.id = '', required this.toyId1, required this.toyId2, required this.userId1, required this.userId2, required this.date});
 
   static PendingTransaction fromDocumentSnapshot(DocumentSnapshot<Map<String,dynamic>> documentSnapshot){
     if(!documentSnapshot.exists){

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:toystm/screens/pendings-list.dart';
 import 'package:toystm/shared/elements/background_image.dart';
 import 'package:toystm/shared/elements/bottom_button.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
@@ -47,6 +48,9 @@ class TradeStep3 extends StatelessWidget {
                   child: BottomButton(
                     text: 'pending requests',
                     backgroundColor: AppColors.WINE_RED,
+                    buttonAction: (){
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PendingsList()));
+                    },
                   ),
                 ),
               ],

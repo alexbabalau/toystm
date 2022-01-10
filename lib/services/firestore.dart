@@ -126,6 +126,11 @@ class FirestoreService {
     return queryDocumentSnapshot.docs.toList()[0].id;   
   }
 
+  Future<void> deleteToyById(String toyId) async{
+    CollectionReference toys = FirebaseFirestore.instance.collection('Toys');
+    return await toys.doc(toyId).delete();
+  }
+
   Future<bool> isFavourite(String toyId, String userId) async{
     QuerySnapshot<Map<String, dynamic>> queryDocumentSnapshot = 
       await FirebaseFirestore.instance
@@ -154,5 +159,7 @@ class FirestoreService {
    }
 
   }
+
+  
 
 }
