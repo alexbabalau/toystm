@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:toystm/models/user.dart';
+import 'package:toystm/screens/log_in.dart';
 import 'package:toystm/services/authentication.dart';
 import 'package:toystm/services/user.dart';
 import 'package:toystm/shared/elements/bottom_button.dart';
@@ -69,7 +70,7 @@ class _UserProfileState extends State<UserProfile> {
                 Container(
                   alignment: Alignment.center,
                   child: Text(
-                    testUser.username,
+                    snapshot.data.username,
                     style: TextStyle(
                         color: AppColors.DARK,
                         fontSize: 24,
@@ -87,6 +88,10 @@ class _UserProfileState extends State<UserProfile> {
                   child: BottomButton(
                     text: 'log out',
                     backgroundColor: AppColors.WINE_RED,
+                    buttonAction: () async{
+                      await AuthenticationService().signOut();
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => LogIn()));
+                    },
                   ),
                 ),
               ],

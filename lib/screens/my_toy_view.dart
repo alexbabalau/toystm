@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:toystm/models/toy.dart';
+import 'package:toystm/screens/home.dart';
+import 'package:toystm/services/firestore.dart';
 import 'package:toystm/shared/elements/bottom_button.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
 import 'package:toystm/shared/elements/horizontal_separation_line.dart';
@@ -33,7 +35,7 @@ class MyToyView extends StatelessWidget {
               width: double.infinity,
               height: 330,
               margin: EdgeInsets.only(top: 10),
-              child: Image.asset(
+              child: Image.network(
                 this.toy.image,
               ),
             ),
@@ -96,6 +98,10 @@ class MyToyView extends StatelessWidget {
               child: BottomButton(
                 text: 'delete',
                 backgroundColor: AppColors.LIGHT_ORANGE,
+                buttonAction: () async{
+                  await FirestoreService().deleteToyById(toy.id);
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
+                },
               ),
             ),
           ],

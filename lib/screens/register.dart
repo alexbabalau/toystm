@@ -18,7 +18,7 @@ class Register extends StatelessWidget {
                   alignment: Alignment.topCenter,
                   padding: EdgeInsets.only(top: 80),
                   child: Text(
-                    'ToysTM LOGO',
+                    'ToysTM',
                     style: TextStyle(fontSize: 30, color: AppColors.CREAM),
                   )),
               UserRegisterForm(),

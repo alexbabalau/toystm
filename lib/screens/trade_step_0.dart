@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:toystm/models/toy.dart';
 import 'package:toystm/models/transaction.dart';
+import 'package:toystm/screens/notifications-center.dart';
+import 'package:toystm/screens/trade_step_1.dart';
+import 'package:toystm/screens/trade_step_2.dart';
 import 'package:toystm/services/firestore.dart';
+import 'package:toystm/services/transactions.dart';
 import 'package:toystm/shared/elements/background_image.dart';
 import 'package:toystm/shared/elements/bottom_button.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
@@ -11,8 +15,8 @@ import 'package:toystm/shared/ui_specs.dart';
 
 class TradeStep0 extends StatefulWidget {
   
-  TransactionFirestoreModel? transaction;
-  TradeStep0({this.transaction});
+  TransactionFirestoreModel transaction;
+  TradeStep0({required this.transaction});
   
   @override
   State<TradeStep0> createState() => _TradeStep0State();
@@ -32,14 +36,13 @@ class _TradeStep0State extends State<TradeStep0> {
   late Future<dynamic> _fetchFuture;
 
   Future<ToyFirestoreModel?> _fetchToy() async{
-    return await FirestoreService().getToyById(widget.transaction!.senderToyId);
+    return await FirestoreService().getToyById(widget.transaction.receiverToyId);
   }
 
   
 
   @override
   void initState() {
-    // TODO: implement initState
     _fetchFuture = this._fetchToy();
     super.initState();
   }
@@ -75,7 +78,7 @@ class _TradeStep0State extends State<TradeStep0> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "${widget.transaction!.senderUsername} wants to trade",
+                              "${widget.transaction.senderUsername} wants to trade",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 20,
@@ -103,7 +106,7 @@ class _TradeStep0State extends State<TradeStep0> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Text(
-                              "If you accept the request,\nin the next step\nyou can choose\na toy from\n${widget.transaction!.senderUsername}\nin exchange for\nyour toy.",
+                              "If you accept the request,\nin the next step\nyou can choose\na toy from\n${widget.transaction.senderUsername}\nin exchange for\nyour toy.",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 22,
@@ -152,6 +155,10 @@ class _TradeStep0State extends State<TradeStep0> {
                                       textSize: 20,
                                       backgroundColor: AppColors.WINE_RED,
                                       textColor: AppColors.CREAM,
+                                      buttonAction: () async{
+                                        await TransactionService().deleteById(widget.transaction.id);
+                                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NotificationsCenter()));
+                                      },
                                     ),
                                   ),
                                   SizedBox(
@@ -163,6 +170,9 @@ class _TradeStep0State extends State<TradeStep0> {
                                       textSize: 20,
                                       backgroundColor: AppColors.WINE_RED,
                                       textColor: AppColors.CREAM,
+                                      buttonAction: ()async{
+                                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TradeStep1(transaction: widget.transaction)));
+                                      },
                                     ),
                                   ),
                                   SizedBox(
@@ -181,5 +191,6 @@ class _TradeStep0State extends State<TradeStep0> {
             ),
           );
         });
+      //return Text(widget.transaction.senderToyId);
   }
 }

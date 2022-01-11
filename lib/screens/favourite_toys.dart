@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:toystm/models/toy.dart';
+import 'package:toystm/screens/my_toy_view.dart';
+import 'package:toystm/screens/toy_details.dart';
+import 'package:toystm/screens/toy_view.dart';
+import 'package:toystm/services/authentication.dart';
 import 'package:toystm/services/firestore.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
 import 'package:toystm/shared/ui_specs.dart';
@@ -18,7 +22,7 @@ class _FavouriteToysState extends State<FavouriteToys> {
   late Future<dynamic> _fetchFuture;
   FirestoreService _firestoreService = FirestoreService();
   List<ToyFirestoreModel> toys = [];
-  String userId = 'DoQZ5zGDJAMc1rh6v7UGZd2Jzsn2';
+  String userId = AuthenticationService().getCurrentUser()!.uid;
 
 
   Future<List<ToyFirestoreModel>> _fetchFavourites() async{
@@ -53,7 +57,12 @@ class _FavouriteToysState extends State<FavouriteToys> {
             appBar: CustomAppBar(),
             body: Container(
               height: MediaQuery.of(context).size.height,
-              child: ToysGridView(toys),
+              child: ToysGridView(toys, onPressedToy: (ToyFirestoreModel toy){
+                if(toy.userId == userId)
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyToyView(toy: toy)));
+                else
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ToyDetails(toyId: toy.id,)));
+              },),
             ),
           );
         }

@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:toystm/models/pending_transaction.dart';
 import 'package:toystm/models/toy.dart';
 import 'package:toystm/models/transaction.dart';
+import 'package:toystm/screens/notifications-center.dart';
+import 'package:toystm/screens/pending_trade_notification.dart';
 import 'package:toystm/services/authentication.dart';
 import 'package:toystm/services/firestore.dart';
+import 'package:toystm/services/transactions.dart';
 import 'package:toystm/services/user.dart';
 import 'package:toystm/shared/elements/background_image.dart';
 import 'package:toystm/shared/elements/bottom_button.dart';
@@ -31,7 +35,10 @@ class _TradeRequestNotificationState extends State<TradeRequestNotification> {
   );
 
   Future<dynamic> _fetchTransactionDetails() async{
-    String fetchUserId = this.userId == widget.transaction.senderToyId ? widget.transaction.receiverToyId : widget.transaction.senderToyId;
+    String fetchUserId = this.userId == widget.transaction.senderUserId ? widget.transaction.receiverUserId : widget.transaction.senderUserId;
+    print(fetchUserId);
+    print(widget.transaction.senderToyId);
+    print(widget.transaction.receiverToyId);
     return await Future.wait([UserService().findUserById(fetchUserId), FirestoreService().getToyById(widget.transaction.senderToyId), FirestoreService().getToyById(widget.transaction.receiverToyId)]);
   }
 
@@ -74,7 +81,7 @@ class _TradeRequestNotificationState extends State<TradeRequestNotification> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            "X accepted your trade request",
+                            "${snapshot.data[0].username} accepted your trade request",
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 20,
@@ -156,6 +163,10 @@ class _TradeRequestNotificationState extends State<TradeRequestNotification> {
                                     textSize: 20,
                                     backgroundColor: AppColors.BRONZE_ORANGE,
                                     textColor: AppColors.CREAM,
+                                    buttonAction: () async{
+                                      await TransactionService().deleteById(widget.transaction.id);
+                                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NotificationsCenter()));
+                                    },
                                   ),
                                 ),
                                 SizedBox(
@@ -167,6 +178,11 @@ class _TradeRequestNotificationState extends State<TradeRequestNotification> {
                                     textSize: 20,
                                     backgroundColor: AppColors.BRONZE_ORANGE,
                                     textColor: AppColors.CREAM,
+                                    buttonAction: () async{
+                                      await TransactionService().deleteById(widget.transaction.id);
+                                      PendingTransaction pendingTransaction = await TransactionService().addPending(widget.transaction);
+                                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PendingTradeNotification(transaction: pendingTransaction,)));
+                                    },
                                   ),
                                 ),
                                 SizedBox(

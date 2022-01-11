@@ -6,7 +6,7 @@ class TransactionFirestoreModel{
   final String receiverUserId;
   final String status; // can be PENDING or ACCEPTED
   final DateTime date;
-  final String id;
+  String id;
   final String senderUsername;
   final String receiverUsername;
   final String receiverToyId;

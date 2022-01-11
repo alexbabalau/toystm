@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:toystm/models/toy.dart';
 import 'package:toystm/models/transaction.dart';
+import 'package:toystm/screens/notifications-center.dart';
+import 'package:toystm/screens/trade_step_3.dart';
+import 'package:toystm/services/transactions.dart';
 import 'package:toystm/shared/elements/background_image.dart';
 import 'package:toystm/shared/elements/bottom_button.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
@@ -135,6 +138,9 @@ class _TradeStep2State extends State<TradeStep2> {
                                 textSize: 20,
                                 backgroundColor: AppColors.LIGHT_ORANGE,
                                 textColor: AppColors.WINE_RED,
+                                buttonAction: (){
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NotificationsCenter()));
+                                },
                               ),
                             ),
                             SizedBox(
@@ -146,6 +152,22 @@ class _TradeStep2State extends State<TradeStep2> {
                                 textSize: 20,
                                 backgroundColor: AppColors.LIGHT_ORANGE,
                                 textColor: AppColors.WINE_RED,
+                                buttonAction: () async{
+                                  await TransactionService().deleteById(widget.transaction.id);
+                                  TransactionFirestoreModel transaction = 
+                                    TransactionFirestoreModel(
+                                      date: DateTime.now(), 
+                                      senderUserId: widget.transaction.receiverUserId,
+                                      receiverUserId: widget.transaction.senderUserId,
+                                      senderUsername: widget.transaction.receiverUsername,
+                                      receiverUsername: widget.transaction.senderUsername,
+                                      senderToyId: widget.receiverToy.id,
+                                      receiverToyId: widget.senderToy.id,
+                                      status: 'Trade accepted'
+                                    );
+                                  transaction = await TransactionService().addTransaction(transaction);
+                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TradeStep3()));
+                                },
                               ),
                             ),
                             SizedBox(

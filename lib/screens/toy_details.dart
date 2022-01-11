@@ -2,8 +2,13 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:toystm/models/toy.dart';
+import 'package:toystm/models/transaction.dart';
+import 'package:toystm/models/user.dart';
+import 'package:toystm/screens/home.dart';
 import 'package:toystm/services/authentication.dart';
 import 'package:toystm/services/firestore.dart';
+import 'package:toystm/services/transactions.dart';
+import 'package:toystm/services/user.dart';
 import 'package:toystm/shared/elements/bottom_button.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
 import 'package:toystm/shared/elements/horizontal_separation_line.dart';
@@ -32,7 +37,7 @@ class _ToyDetailsState extends State<ToyDetails> {
   AuthenticationService _authenticationService = AuthenticationService();
 
   //String toyId = '6BbhfUVj1ZB4lNIp5iHa';
-  String userId = 'DoQZ5zGDJAMc1rh6v7UGZd2Jzsn2';
+  String userId = AuthenticationService().getCurrentUser()!.uid;
   late Future<dynamic> _fetchFuture;
 
   Future<dynamic> _fetchToyAndFavourites() async {
@@ -151,6 +156,22 @@ class _ToyDetailsState extends State<ToyDetails> {
                       child: BottomButton(
                     text: 'want to trade',
                     backgroundColor: AppColors.WINE_RED,
+                    buttonAction: () async{
+                      UserFirestoreModel receiverUser = await UserService().findUserById(this.toy.userId);
+                      UserFirestoreModel senderUser = await UserService().findUserById(userId);
+                      TransactionFirestoreModel transaction = TransactionFirestoreModel(
+                        date: DateTime.now(),
+                        receiverUserId: this.toy.userId,
+                        senderUserId: userId,
+                        receiverToyId: this.toy.id,
+                        senderToyId: '',
+                        senderUsername: senderUser.username,
+                        receiverUsername: receiverUser.username,
+                        status: 'Trade request'
+                      );
+                      await TransactionService().addTransaction(transaction);
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
+                    },
                   )),
                 ],
               ),

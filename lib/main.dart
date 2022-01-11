@@ -17,6 +17,7 @@ import 'package:toystm/screens/toy_view.dart';
 import 'package:toystm/screens/trade_request_notification.dart';
 import 'package:toystm/screens/trade_step_1.dart';
 import 'package:toystm/screens/user_profile.dart';
+import 'package:toystm/services/authentication.dart';
 import 'package:toystm/services/firestore.dart';
 import 'package:toystm/shared/elements/background_image.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
@@ -64,15 +65,31 @@ class _ToysTMAppState extends State<ToysTMApp> {
     //print(this.toys);
   }
 
+  bool authenticated = false;
+
   @override
   void initState() {
     // TODO: implement initState
     this._fetchFirstPage();
+    
+    AuthenticationService().authStateChanges().listen((user) {
+        if(user == null){
+          setState(() {
+            authenticated = false;
+          });
+        }
+        else{
+          setState(() {
+            authenticated = true;
+          });
+        }
+    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+    print(AuthenticationService().getCurrentUser());
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: //PendingTradeNotification(),
@@ -90,10 +107,12 @@ class _ToysTMAppState extends State<ToysTMApp> {
       //NotificationsCenter(),
       //PendingsList(),
       //Register(),
-      LogIn(),
+      //LogIn(),
       //Home(),
       //FetchTest()
       //AddToy(),
+      //authenticated ? Home() : LogIn()
+      LogIn()
     );
   }
 }
