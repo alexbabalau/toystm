@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:toystm/models/toy.dart';
 import 'package:toystm/screens/home.dart';
 import 'package:toystm/services/firestore.dart';
+import 'package:toystm/services/transactions.dart';
 import 'package:toystm/shared/elements/bottom_button.dart';
 import 'package:toystm/shared/elements/custom_app_bar.dart';
 import 'package:toystm/shared/elements/horizontal_separation_line.dart';
@@ -100,6 +101,8 @@ class MyToyView extends StatelessWidget {
                 backgroundColor: AppColors.LIGHT_ORANGE,
                 buttonAction: () async{
                   await FirestoreService().deleteToyById(toy.id);
+                  await TransactionService().deleteTransactionAndPendingsByToyId(toy.id);
+                  await FirestoreService().deleteFavoriteByToyId(toy.id);
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));
                 },
               ),
