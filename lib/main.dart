@@ -71,18 +71,17 @@ class _ToysTMAppState extends State<ToysTMApp> {
   void initState() {
     // TODO: implement initState
     this._fetchFirstPage();
-    
+
     AuthenticationService().authStateChanges().listen((user) {
-        if(user == null){
-          setState(() {
-            authenticated = false;
-          });
-        }
-        else{
-          setState(() {
-            authenticated = true;
-          });
-        }
+      if (user == null) {
+        setState(() {
+          authenticated = false;
+        });
+      } else {
+        setState(() {
+          authenticated = true;
+        });
+      }
     });
     super.initState();
   }
@@ -91,28 +90,28 @@ class _ToysTMAppState extends State<ToysTMApp> {
   Widget build(BuildContext context) {
     print(AuthenticationService().getCurrentUser());
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: //PendingTradeNotification(),
-      //TradeRequestNotification(),
-      //FavouriteToys(),
-      //MyToys(),
-      //TradeStep1(),
-      //TradeStep0(),
-      //TradeStep2(),
-      //TradeStep3(),
-      //MyToyView(),
-      //ToyDetails(toyId: '6BbhfUVj1ZB4lNIp5iHa'),
-      //UserProfile(),
-      //Search(),
-      //NotificationsCenter(),
-      //PendingsList(),
-      //Register(),
-      //LogIn(),
-      //Home(),
-      //FetchTest()
-      //AddToy(),
-      //authenticated ? Home() : LogIn()
-      LogIn()
-    );
+        debugShowCheckedModeBanner: false,
+        home: //PendingTradeNotification(),
+            //TradeRequestNotification(),
+            //FavouriteToys(),
+            //MyToys(),
+            //TradeStep1(),
+            //TradeStep0(),
+            //TradeStep2(),
+            //TradeStep3(),
+            //MyToyView(),
+            //ToyDetails(toyId: '6BbhfUVj1ZB4lNIp5iHa'),
+            //UserProfile(),
+            //Search(),
+            //NotificationsCenter(),
+            //PendingsList(),
+            //Register(),
+            //LogIn(),
+            //Home(),
+            //FetchTest()
+            //AddToy(),
+            authenticated ? Home() : LogIn()
+        //LogIn()
+        );
   }
 }

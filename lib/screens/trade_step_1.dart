@@ -13,11 +13,10 @@ import 'package:toystm/widgets/toys_grid/toys_firestore_renderer.dart';
 import 'package:toystm/widgets/toys_grid/toys_grid_view.dart';
 
 class TradeStep1 extends StatefulWidget {
-  
   TransactionFirestoreModel transaction;
 
   TradeStep1({required this.transaction});
-  
+
   @override
   State<TradeStep1> createState() => _TradeStep1State();
 }
@@ -34,9 +33,12 @@ class _TradeStep1State extends State<TradeStep1> {
   );
 
   late Future<dynamic> _fetchFuture;
-  
-  Future<dynamic> _fetchToys() async{
-    return await Future.wait([FirestoreService().getUserToys(widget.transaction.senderUserId), FirestoreService().getToyById(widget.transaction.receiverToyId)]);
+
+  Future<dynamic> _fetchToys() async {
+    return await Future.wait([
+      FirestoreService().getUserToys(widget.transaction.senderUserId),
+      FirestoreService().getToyById(widget.transaction.receiverToyId)
+    ]);
   }
 
   @override
@@ -48,7 +50,6 @@ class _TradeStep1State extends State<TradeStep1> {
 
   @override
   Widget build(BuildContext context) {
-    
     return FutureBuilder(
         future: _fetchFuture,
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -60,7 +61,7 @@ class _TradeStep1State extends State<TradeStep1> {
             //context.loaderOverlay.show();
             return Container();
           }
-          
+
           return Scaffold(
             backgroundColor: AppColors.CREAM,
             appBar: CustomAppBar(),
@@ -92,9 +93,16 @@ class _TradeStep1State extends State<TradeStep1> {
                         onPressedToy: (ToyFirestoreModel toy) {
                           print(toy);
                           print(snapshot.data[1]);
-                          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TradeStep2(transaction: widget.transaction, senderToy: toy, receiverToy: snapshot.data[1],)));
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => TradeStep2(
+                                        transaction: widget.transaction,
+                                        senderToy: toy,
+                                        receiverToy: snapshot.data[1],
+                                      )));
                         },
-                        subtractedHeight: 50,
+                        subtractedHeight: 75,
                       ),
                     ],
                   ),
@@ -102,7 +110,6 @@ class _TradeStep1State extends State<TradeStep1> {
               ),
             ),
           );
-          }
-        );
+        });
   }
 }

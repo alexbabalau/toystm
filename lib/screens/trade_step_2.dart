@@ -16,7 +16,10 @@ class TradeStep2 extends StatefulWidget {
   ToyFirestoreModel senderToy;
   ToyFirestoreModel receiverToy;
 
-  TradeStep2({required this.transaction, required this.senderToy, required this.receiverToy});
+  TradeStep2(
+      {required this.transaction,
+      required this.senderToy,
+      required this.receiverToy});
   @override
   State<TradeStep2> createState() => _TradeStep2State();
 }
@@ -115,12 +118,6 @@ class _TradeStep2State extends State<TradeStep2> {
                     ],
                   ),
                 ),
-                // Expanded(
-                //   child: BottomButton(
-                //     text: "cancel",
-                //     side_padding: 0,
-                //   ),
-                // ),
                 Expanded(
                   child: Container(
                     padding: EdgeInsets.only(bottom: 25),
@@ -138,8 +135,12 @@ class _TradeStep2State extends State<TradeStep2> {
                                 textSize: 20,
                                 backgroundColor: AppColors.LIGHT_ORANGE,
                                 textColor: AppColors.WINE_RED,
-                                buttonAction: (){
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NotificationsCenter()));
+                                buttonAction: () {
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              NotificationsCenter()));
                                 },
                               ),
                             ),
@@ -152,21 +153,29 @@ class _TradeStep2State extends State<TradeStep2> {
                                 textSize: 20,
                                 backgroundColor: AppColors.LIGHT_ORANGE,
                                 textColor: AppColors.WINE_RED,
-                                buttonAction: () async{
-                                  await TransactionService().deleteById(widget.transaction.id);
-                                  TransactionFirestoreModel transaction = 
-                                    TransactionFirestoreModel(
-                                      date: DateTime.now(), 
-                                      senderUserId: widget.transaction.receiverUserId,
-                                      receiverUserId: widget.transaction.senderUserId,
-                                      senderUsername: widget.transaction.receiverUsername,
-                                      receiverUsername: widget.transaction.senderUsername,
-                                      senderToyId: widget.receiverToy.id,
-                                      receiverToyId: widget.senderToy.id,
-                                      status: 'Trade accepted'
-                                    );
-                                  transaction = await TransactionService().addTransaction(transaction);
-                                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TradeStep3()));
+                                buttonAction: () async {
+                                  await TransactionService()
+                                      .deleteById(widget.transaction.id);
+                                  TransactionFirestoreModel transaction =
+                                      TransactionFirestoreModel(
+                                          date: DateTime.now(),
+                                          senderUserId:
+                                              widget.transaction.receiverUserId,
+                                          receiverUserId:
+                                              widget.transaction.senderUserId,
+                                          senderUsername: widget
+                                              .transaction.receiverUsername,
+                                          receiverUsername:
+                                              widget.transaction.senderUsername,
+                                          senderToyId: widget.receiverToy.id,
+                                          receiverToyId: widget.senderToy.id,
+                                          status: 'Trade accepted');
+                                  transaction = await TransactionService()
+                                      .addTransaction(transaction);
+                                  Navigator.pushReplacement(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) => TradeStep3()));
                                 },
                               ),
                             ),

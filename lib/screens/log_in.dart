@@ -36,7 +36,7 @@ class _LogInState extends State<LogIn> {
                 alignment: Alignment.topCenter,
                 padding: EdgeInsets.only(top: 160),
                 child: Text(
-                  'ToysTM LOGO',
+                  'ToysTM',
                   style: TextStyle(fontSize: 38, color: AppColors.CREAM),
                 )),
             Container(
@@ -81,7 +81,10 @@ class _LogInState extends State<LogIn> {
                         Expanded(
                           child: TextButton(
                             onPressed: () {
-                              Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Register()));
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Register()));
                             },
                             child: Align(
                               alignment: Alignment.centerRight,
