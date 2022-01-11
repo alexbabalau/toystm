@@ -182,7 +182,11 @@ class _PendingTradeNotificationState extends State<PendingTradeNotification> {
                                       backgroundColor: AppColors.WINE_RED,
                                       textColor: AppColors.CREAM,
                                       buttonAction: () async{
-                                        await TransactionService().deleteById(widget.transaction.id);
+                                        await TransactionService().deletePending(widget.transaction.id);
+                                        await FirestoreService().deleteToyById(widget.transaction.toyId1);
+                                        await FirestoreService().deleteToyById(widget.transaction.toyId2);
+                                        await TransactionService().deleteTransactionAndPendingsByToyId(widget.transaction.toyId1);
+                                        await TransactionService().deleteTransactionAndPendingsByToyId(widget.transaction.toyId2);
                                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PendingsList()));
                                       },
                                     ),

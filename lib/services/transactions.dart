@@ -99,5 +99,27 @@ class TransactionService{
     CollectionReference pendings = FirebaseFirestore.instance.collection('Pendings');
     await pendings.doc(id).delete();
   }
+
+  Future<void> deleteTransactionAndPendingsByToyId(String toyId) async{
+    var collection = FirebaseFirestore.instance.collection('Transactions');
+    var snapshot = await collection.where('senderToyId', isEqualTo: toyId).get();
+    for (var doc in snapshot.docs) {
+      await doc.reference.delete();
+    }
+    snapshot = await collection.where('receiverToyId', isEqualTo: toyId).get();
+    for (var doc in snapshot.docs) {
+      await doc.reference.delete();
+    }
+
+    collection = FirebaseFirestore.instance.collection('Pendings');
+    snapshot = await collection.where('toyId1', isEqualTo: toyId).get();
+    for (var doc in snapshot.docs) {
+      await doc.reference.delete();
+    }
+    snapshot = await collection.where('toyId2', isEqualTo: toyId).get();
+    for (var doc in snapshot.docs) {
+      await doc.reference.delete();
+    }
+  }
   
 }
