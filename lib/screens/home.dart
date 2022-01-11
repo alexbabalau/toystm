@@ -29,11 +29,13 @@ class _HomeState extends State<Home> {
   List<ToyFirestoreModel> toys = [];
   List<DocumentSnapshot<Map<String, dynamic>>> toyDocuments = [];
 
+  late Future<dynamic> _fetchFuture;
 
   @override
   void initState(){
-    this.scrollController.addListener(() {this._scrollListener();});
-    this._fetchFirstPage();
+    //this.scrollController.addListener(() {this._scrollListener();});
+    //this._fetchFirstPage();
+    this._fetchFuture = FirestoreService().getToys();
     super.initState();
   }
 
@@ -70,27 +72,41 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: AppColors.CREAM,
-      appBar: CustomAppBar(),
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        child: SingleChildScrollView(
-          //controller: scrollController,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              BackgroundImage("assets/images/home-screen.png"),
-              ToysFirestoreRenderer(toysButtonAction: (ToyFirestoreModel toy){
-                if(toy.userId == userId)
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyToyView(toy: toy)));
-                else
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ToyDetails(toyId: toy.id,)));
-              },),
-            ],
+    return FutureBuilder(
+        future: _fetchFuture,
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if (snapshot.hasError) {
+            throw snapshot.error.toString();
+          }
+          if (snapshot.connectionState == ConnectionState.waiting ||
+              !snapshot.hasData) {
+            //context.loaderOverlay.show();
+            return Container();
+          }
+    
+        return Scaffold(
+          backgroundColor: AppColors.CREAM,
+          appBar: CustomAppBar(),
+          body: Container(
+            height: MediaQuery.of(context).size.height,
+            child: SingleChildScrollView(
+              //controller: scrollController,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  BackgroundImage("assets/images/home-screen.png"),
+                  ToysGridView(
+                    snapshot.data,
+                    onPressedToy: (ToyFirestoreModel toy){
+                    if(toy.userId == userId)
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MyToyView(toy: toy)));
+                    else
+                      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => ToyDetails(toyId: toy.id,)));
+                  },),
+                ],
+              ),
+            ),
           ),
-        ),
-      ),
-    );
+        );});
   }
 }

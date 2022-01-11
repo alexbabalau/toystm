@@ -178,7 +178,7 @@ class _PendingTradeNotificationState extends State<PendingTradeNotification> {
                                   ),
                                   Expanded(
                                     child: CustomElevatedButton(
-                                      text: "finalized trade",
+                                      text: "finalize trade",
                                       textSize: 20,
                                       backgroundColor: AppColors.WINE_RED,
                                       textColor: AppColors.CREAM,

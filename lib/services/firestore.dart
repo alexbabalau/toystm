@@ -170,5 +170,13 @@ class FirestoreService {
     }
   }
   
+  Future<List<ToyFirestoreModel>> getToys()async{
+    QuerySnapshot<Map<String, dynamic>> queryDocumentSnapshot =
+        await FirebaseFirestore.instance
+            .collection('Toys')
+            .orderBy('dateAdded')
+            .get();
+    return queryDocumentSnapshot.docs.toList().map((doc) => ToyFirestoreModel.fromDocumentSnapshot(doc)).toList();
+  } 
 
 }
