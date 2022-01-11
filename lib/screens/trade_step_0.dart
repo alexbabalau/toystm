@@ -36,7 +36,7 @@ class _TradeStep0State extends State<TradeStep0> {
   late Future<dynamic> _fetchFuture;
 
   Future<ToyFirestoreModel?> _fetchToy() async{
-    return await FirestoreService().getToyById(widget.transaction.senderToyId);
+    return await FirestoreService().getToyById(widget.transaction.receiverToyId);
   }
 
   
@@ -191,5 +191,6 @@ class _TradeStep0State extends State<TradeStep0> {
             ),
           );
         });
+      //return Text(widget.transaction.senderToyId);
   }
 }

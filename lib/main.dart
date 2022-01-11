@@ -89,6 +89,7 @@ class _ToysTMAppState extends State<ToysTMApp> {
 
   @override
   Widget build(BuildContext context) {
+    print(AuthenticationService().getCurrentUser());
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: //PendingTradeNotification(),
@@ -110,7 +111,8 @@ class _ToysTMAppState extends State<ToysTMApp> {
       //Home(),
       //FetchTest()
       //AddToy(),
-      authenticated ? Home() : LogIn()
+      //authenticated ? Home() : LogIn()
+      LogIn()
     );
   }
 }

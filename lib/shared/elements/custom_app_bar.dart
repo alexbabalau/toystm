@@ -13,20 +13,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       //centerTitle: true,
       backgroundColor: AppColors.CREAM,
       foregroundColor: AppColors.DARK,
-      leading: InkWell(
-        onTap: (){
-          Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NotificationsCenter()));
-        },
-        child: IconButton(
+      leading: (
+    
+        IconButton(
           iconSize: 26,
           icon:
               const Icon(true ? Icons.notifications_none : Icons.arrow_back_ios),
           tooltip: 'Show Snackbar',
           onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('This is a snackbar')));
+            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => NotificationsCenter()));
           },
-        ),
+        )
       ),
       title: InkWell(onTap: (){
         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => Home()));

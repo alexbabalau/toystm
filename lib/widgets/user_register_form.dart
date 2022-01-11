@@ -100,7 +100,7 @@ class _UserRegisterFormState extends State<UserRegisterForm> {
                     this.error = 'Username or password invalid';
                   }
                 });
-                User? user = await AuthenticationService().registerWithEmailAndPassword(_emailController.text, _passwordController.text, _usernameController.text);
+                User? user = await AuthenticationService().registerWithEmailAndPassword(_emailController.text, _passwordController.text, _usernameController.text, _firstNameController.text, _lastNameController.text, _phoneController.text);
                 if(user == null){
                   setState(() {
                     this.error = 'Invalid field, retry';

@@ -35,7 +35,10 @@ class _TradeRequestNotificationState extends State<TradeRequestNotification> {
   );
 
   Future<dynamic> _fetchTransactionDetails() async{
-    String fetchUserId = this.userId == widget.transaction.senderToyId ? widget.transaction.receiverToyId : widget.transaction.senderToyId;
+    String fetchUserId = this.userId == widget.transaction.senderUserId ? widget.transaction.receiverUserId : widget.transaction.senderUserId;
+    print(fetchUserId);
+    print(widget.transaction.senderToyId);
+    print(widget.transaction.receiverToyId);
     return await Future.wait([UserService().findUserById(fetchUserId), FirestoreService().getToyById(widget.transaction.senderToyId), FirestoreService().getToyById(widget.transaction.receiverToyId)]);
   }
 

@@ -51,7 +51,7 @@ class FirestoreService {
       'minAge': toy.minAge,
       'image': null,
       'maxAge': toy.maxAge,
-      'user': toy.userId // 42
+      'userId': toy.userId // 42
     });
     if(imageFile != null){
       String id = toyRef.id;
@@ -96,6 +96,8 @@ class FirestoreService {
   }
 
   Future<List<ToyFirestoreModel>> getToysByIds(List<String> ids) async{
+    if(ids.length == 0)
+      return [];
     QuerySnapshot<Map<String, dynamic>> queryDocumentSnapshot = 
       await FirebaseFirestore.instance
         .collection('Toys')

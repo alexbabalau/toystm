@@ -35,7 +35,7 @@ class MyToyView extends StatelessWidget {
               width: double.infinity,
               height: 330,
               margin: EdgeInsets.only(top: 10),
-              child: Image.asset(
+              child: Image.network(
                 this.toy.image,
               ),
             ),

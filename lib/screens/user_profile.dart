@@ -70,7 +70,7 @@ class _UserProfileState extends State<UserProfile> {
                 Container(
                   alignment: Alignment.center,
                   child: Text(
-                    testUser.username,
+                    snapshot.data.username,
                     style: TextStyle(
                         color: AppColors.DARK,
                         fontSize: 24,

@@ -17,8 +17,9 @@ class NotificationsList extends StatelessWidget {
           itemBuilder: (ctx, index) {
             return InkWell(
               onTap: (){
+                print(notifications[index]);
                 if(onPressedNotification != null)
-                  onPressedNotification!.call(notifications[index]);
+                  onPressedNotification!(notifications[index]);
               },
               child: Card(
                 margin: EdgeInsets.symmetric(vertical: 7),

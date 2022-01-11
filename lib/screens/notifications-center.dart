@@ -65,9 +65,11 @@ class _NotificationsCenterState extends State<NotificationsCenter> {
               BackgroundImage("assets/images/img3.png"),
               NotificationsList(snapshot.data, onPressedNotification: (TransactionNotification notification){
                 if(notification.title == 'Trade request'){
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TradeStep0(transaction: notification.transaction!,)));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => TradeStep0(transaction: notification.transaction!,)));
                 }
                 else{
+                  print(notification.transaction!.senderToyId);
+                  print(notification.transaction!.receiverToyId);
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TradeRequestNotification(transaction: notification.transaction!,)));
                 }
               },),

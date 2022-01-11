@@ -37,7 +37,7 @@ class _ToyDetailsState extends State<ToyDetails> {
   AuthenticationService _authenticationService = AuthenticationService();
 
   //String toyId = '6BbhfUVj1ZB4lNIp5iHa';
-  String userId = 'DoQZ5zGDJAMc1rh6v7UGZd2Jzsn2';
+  String userId = AuthenticationService().getCurrentUser()!.uid;
   late Future<dynamic> _fetchFuture;
 
   Future<dynamic> _fetchToyAndFavourites() async {

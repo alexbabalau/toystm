@@ -36,7 +36,7 @@ class _TradeStep1State extends State<TradeStep1> {
   late Future<dynamic> _fetchFuture;
   
   Future<dynamic> _fetchToys() async{
-    return await Future.wait([FirestoreService().getUserToys(widget.transaction.senderUserId), FirestoreService().getToyById(widget.transaction.receiverUserId)]);
+    return await Future.wait([FirestoreService().getUserToys(widget.transaction.senderUserId), FirestoreService().getToyById(widget.transaction.receiverToyId)]);
   }
 
   @override
@@ -90,6 +90,8 @@ class _TradeStep1State extends State<TradeStep1> {
                       ToysGridView(
                         snapshot.data[0],
                         onPressedToy: (ToyFirestoreModel toy) {
+                          print(toy);
+                          print(snapshot.data[1]);
                           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => TradeStep2(transaction: widget.transaction, senderToy: toy, receiverToy: snapshot.data[1],)));
                         },
                         subtractedHeight: 50,

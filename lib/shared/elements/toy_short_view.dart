@@ -17,7 +17,7 @@ class ToyShortView extends StatelessWidget {
         Container(
           width: 100,
           height: 130,
-          child: Image.asset(this.toy.image),
+          child: Image.network(this.toy.image),
         ),
         SizedBox(
           height: 7,
