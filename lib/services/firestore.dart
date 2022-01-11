@@ -162,6 +162,13 @@ class FirestoreService {
 
   }
 
+  Future<void> deleteFavoriteByToyId(String toyId) async{
+    CollectionReference favourites = FirebaseFirestore.instance.collection('Favourites');
+    var snapshot = await favourites.where('toyId', isEqualTo: toyId).get();
+    for (var doc in snapshot.docs) {
+      await doc.reference.delete();
+    }
+  }
   
 
 }

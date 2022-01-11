@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:toystm/models/pending_transaction.dart';
 import 'package:toystm/models/toy.dart';
@@ -187,6 +188,8 @@ class _PendingTradeNotificationState extends State<PendingTradeNotification> {
                                         await FirestoreService().deleteToyById(widget.transaction.toyId2);
                                         await TransactionService().deleteTransactionAndPendingsByToyId(widget.transaction.toyId1);
                                         await TransactionService().deleteTransactionAndPendingsByToyId(widget.transaction.toyId2);
+                                        await FirestoreService().deleteFavoriteByToyId(widget.transaction.toyId1);
+                                        await FirestoreService().deleteFavoriteByToyId(widget.transaction.toyId2);
                                         Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => PendingsList()));
                                       },
                                     ),
